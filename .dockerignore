@@ -1,0 +1,14 @@
+# Ignore node_modules
+node_modules/
+# Ignore version control system directories
+.git/
+.gitignore
+
+# Ignore IDE and editor config files
+.vscode/
+*.log
+
+# Ignore unnecessary files
+*.zip
+*.tar
+*.gz

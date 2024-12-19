@@ -1,0 +1,42 @@
+html {
+    font-family: Open Sans, sans-serif;
+    overflow-y: scroll;
+    height: 100%;
+    font-size: 12px;
+    line-height: 1.66667;
+}
+body, html {
+    min-height: 100%;
+    background-color: #000;
+    color: #929a9e;
+}
+#box1 {
+    display: flex;
+    height: 106px;
+    width: 477px;
+    background-color: #495867;
+    padding: 8px;
+    font-family: 'OpenSans';
+}
+.featured-newstext {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #929a9e;
+}
+.featured-small-newstext {
+
+}
+#img1 {
+
+}
+#insideBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 8px;
+}
+@font-face {
+    font-family: 'OpenSans';
+    src: url('fonts/OpenSans.ttf');
+}
