@@ -156,13 +156,13 @@ footer {
 
 @font-face {
     font-family: 'Inter';
-    src: url('fonts/Inter.ttf');
+    src: url('../contents/fonts/Inter.ttf');
 }
 @font-face {
     font-family: 'Inter-B';
-    src: url('fonts/Inter-B.ttf');
+    src: url('../contents/fonts/Inter-B.ttf');
 }
 @font-face {
     font-family: 'Roboto';
-    src: url('fonts/Roboto-Regular.ttf');
+    src: url('../contents/fonts/Roboto-Regular.ttf');
 }

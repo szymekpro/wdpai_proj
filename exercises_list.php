@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="images/troll.jpg">
+    <link rel="icon" type="image/jpg" href="contents/images/troll.jpg">
     <title> FACEIT </title>
-    <link rel="stylesheet" href="nw_style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="styles/exercises_list_style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
     <div id="leftCornerLogo">
         <div id="logo">
-            <img id="logoIMG" src="images2/image.png"/>
+            <img id="logoIMG" src="contents/images2/image.png"/>
             <div id="logoTitle">  PeakFit  </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
 </header>
 
 <div id="main">
-
+<?php include "exercises_list_script.php";?>
 </div>
 
 <footer>

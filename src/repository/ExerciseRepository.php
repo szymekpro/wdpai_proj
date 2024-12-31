@@ -1,8 +1,8 @@
 <?php
 
-namespace repository;
-use models\Exercise;
+namespace src\repository;
 use PDO;
+use src\models\Exercise;
 
 require_once __DIR__ . '/Repository.php';
 require_once __DIR__ . '/../models/Exercise.php';
@@ -33,9 +33,9 @@ class ExerciseRepository extends Repository
 
      public function getAllExercises(): array {
          $stmt = $this->db->connect()->prepare(
-             "SELECT * FROM public.exercises"
+             "SELECT * FROM public.exercises ORDER BY name"
          );
-         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+         //$stmt->bindParam(':name', $name, PDO::PARAM_STR);
          $stmt->execute();
          $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

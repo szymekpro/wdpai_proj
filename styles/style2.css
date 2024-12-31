@@ -38,5 +38,5 @@ body, html {
 }
 @font-face {
     font-family: 'OpenSans';
-    src: url('fonts/OpenSans.ttf');
+    src: url('../contents/fonts/OpenSans.ttf');
 }

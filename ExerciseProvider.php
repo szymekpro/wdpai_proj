@@ -1,7 +1,7 @@
 <?php
 
 
-use repository\ExerciseRepository;
+use src\repository\ExerciseRepository;
 
 class ExerciseProvider
 {

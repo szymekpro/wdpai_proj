@@ -1,6 +1,6 @@
 <?php
 
-namespace repository;
+namespace src\repository;
 use Database;
 
 require_once __DIR__ . '/../db/Database.php';
