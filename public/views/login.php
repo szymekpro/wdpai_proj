@@ -3,7 +3,7 @@
 <head>
     <link rel="icon" type="image/jpg" href="../../contents/images/troll.jpg">
     <title> FACEIT </title>
-    <link rel="stylesheet" href="../../styles/style.css">
+    <link rel="stylesheet" href="../../styles/style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -14,21 +14,23 @@
         <div id="logoTitle">  PeakFit  </div>
     </div>
 
-    <form class="login">
-        <div class="messages">
+    <form class="login" action="login" method="POST">
+        <div class="loginMessage">
             <?php
-            if (isset($message)) {
-                echo $message;
+            if (isset($messages)) {
+                foreach ($messages as $message) {
+                    echo  "<div class='message'>" . htmlspecialchars($message) . "</div>";;
+                }
             }
             else {
-                echo "Message variable not set.";
+                //echo "Message variable not set.";
             }
             ?>
         </div>
         <div id="loginBox">
 
             <div id="outerBox"></div>
-            <div id="innerBox"> <input class="loginInput" type="text" name="login" placeholder="login" /></div>
+            <div id="innerBox"> <input class="loginInput" type="text" name="email" placeholder="email" /></div>
         </div>
 
         <div id="loginBox">

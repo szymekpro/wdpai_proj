@@ -43,7 +43,7 @@ html,body{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 #outerBox {
     width: 280px; 
@@ -67,6 +67,14 @@ html,body{
     padding: 20px;
     font-size: 18px;
     color: white;
+}
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Roboto';
+    padding-top: 15px;
 }
 #loginButton {
     display: flex;

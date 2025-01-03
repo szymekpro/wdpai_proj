@@ -16,7 +16,7 @@
             </div>
             <div id="headerOptions"> 
                 <div class="iconContainer">
-                <a href="main.php">
+                <a href="main_spare.php">
                     <i class="fa-solid fa-house fa-3x icons"></i></a> 
                         <div class="iconText">Home</div>
                 </div>

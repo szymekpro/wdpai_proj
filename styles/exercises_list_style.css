@@ -1,0 +1,231 @@
+html,body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(32, 32, 32);
+    display: flex;
+    flex-direction: column;
+}
+header {
+    margin: 0px;
+    padding: 0px;
+    background-color: inherit;
+    height: 180px;
+    border-bottom: 1px solid #333333;
+    display: flex;
+    position: relative;
+}
+a {
+    text-decoration: none;
+}
+.exercisesContainer {
+
+}
+/* The entire scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 12px; /* Height of the scrollbar for horizontal bars */
+}
+
+/* The track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+    background: rgb(32, 32, 32); /* Light grey */
+    border-radius: 10px; /* Optional: adds rounding */
+}
+
+/* The handle (scroll thumb) */
+::-webkit-scrollbar-thumb {
+    background: #888; /* Darker grey */
+    border-radius: 10px; /* Optional: adds rounding */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #333333; /* Even darker grey */
+}
+
+.exercise {
+    padding: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom: 1px solid #333333;
+}
+.exercise:hover {
+    background-color: rgb(80, 80, 80);
+}
+.exercisePhoto {
+    padding: 7px;
+}
+.exerciseTextBox {
+    height: 100%;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+
+}
+.exerciseName {
+    padding-bottom: 5px;
+    color: white;
+    font-family: "Inter-B";
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.exerciseDescription {
+    color: #bfbebe;
+    font-family: "Inter-B";
+}
+.exercisePhoto {
+    height: 75px;
+    width: 100px;
+}
+#headerOptions {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.iconText {
+    padding-top: 6px;
+    color: white;
+    font-family: "Inter-B";
+}
+#main {
+    width: 100%;
+    height: 75%;
+    margin: 0px;
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    justify-content: flex-start;
+
+}
+.mainIconsContainer {
+    padding-top: 20px;
+    height: 375px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 15px;
+    align-items: center;
+}
+
+.mainIconText {
+    padding-left: 8px;
+    color: white;
+    font-family: "Inter-B";
+    font-size: 22px;
+}
+#welcomeText {
+    padding-top: 30px;
+    font-size: 32px;
+    font-family: "Inter-B";
+    color: white;
+}
+#leftCornerLogo  {
+    display: flex;
+    justify-content: left;
+    align-self: start;
+    padding: 10px;
+
+}
+#logo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#logoIMG {
+    width: 100px;
+    height: auto
+}
+#logoTitle {
+    display: flex;
+    color: white;
+    font-size: 26px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 500;
+
+}
+footer {
+    background-color: #333333;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: auto;
+}
+#line {
+    display: flex;
+    height: 25px;
+    width: auto;
+    border-top: 1px solid #333333;
+    background-color: rgb(32, 32, 32);
+    align-items: center;
+    color: #A39F9F;
+    font-size:14px;
+    font-family: 'Roboto';
+    font-weight: 200;
+    padding-left: 8px;
+
+}
+#footerBox {
+    margin: 12.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 300px;
+}
+.mainicons {
+
+    color: white;
+    width: 70px;
+}
+.icons {
+    color: white;
+
+}
+.fa-solid.fa-user {
+    color: rgb(228, 137, 33);
+}
+.fa-solid.fa-plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-solid.fa-dumbbell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-solid.fa-chart-simple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../contents/fonts/Inter.ttf');
+}
+@font-face {
+    font-family: 'Inter-B';
+    src: url('../contents/fonts/Inter-B.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('../contents/fonts/Roboto-Regular.ttf');
+}

@@ -16,7 +16,7 @@
             </div>
             <div id="headerOptions"> 
                 <div class="iconContainer">
-                <a href="main.php">
+                <a href="main_spare.php">
                     <i class="fa-solid fa-house fa-3x icons"></i></a> 
                         <div class="iconText">Home</div>
                 </div>
@@ -44,7 +44,7 @@
                     <i class="fa-solid fa-dumbbell fa-3x mainicons"></i>
                         <div class="mainIconText">Exercises</div>
                 </a>
-                <a class="mainiconContainer" href="main.php">
+                <a class="mainiconContainer" href="main_spare.php">
                     <i class="fa-solid fa-chart-simple fa-3x mainicons"></i>
                         <div class="mainIconText">History</div>
                 </a>

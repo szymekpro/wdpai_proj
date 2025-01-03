@@ -15,7 +15,7 @@
              </div>
 
             <form action="public/views/login.php" method="POST">
-                <?php include "views/login.php";?>
+
                 <div id="loginBox">
 
                     <div id="outerBox"></div>

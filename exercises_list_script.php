@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/repository/ExerciseRepository.php'; // Adjust path as needed
+require_once __DIR__ . '/src/repository/ExerciseRepository.php'; // Adjust path as needed
 require_once __DIR__ . '/db/Database.php';
-require_once __DIR__ . '/models/Exercise.php';
+require_once __DIR__ . '/src/models/Exercise.php';
 
 $exerciseRepository = new \src\repository\ExerciseRepository();
 $exerciseList = $exerciseRepository->getAllExercises();
