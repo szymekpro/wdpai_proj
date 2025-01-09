@@ -34,10 +34,10 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/../../php" />
+      <path value="$USER_HOME$/php" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.0" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
   <component name="PhpStan">
     <PhpStan_settings>
       <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="edbb9aa0-0abd-4a02-b9c8-6deda375e8dd" timeout="60000" />

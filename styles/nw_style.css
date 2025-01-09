@@ -46,31 +46,89 @@ a {
     background-color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     
 }
-.mainIconsContainer {
-    padding-top: 20px;
-    height: 375px;
+.workoutButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    gap: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333333;
+}
+.wButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100px;
+    font-family: "Roboto";
+    font-size: 15px;
+    color: white;
+    background-color: rgb(32, 32, 32);
+    border-radius: 5px;
+    border: 1px solid white;
 
+}
+.wButton:hover {
+    background-color: #656565;
+}
+.workoutText {
+    color: white;
+    font-family: 'Inter-B';
+    font-size: 27px;
+    font-weight: bold;
+    padding: 10px;
+}
+.workoutBox {
+    padding: 10px;
+    font-family: 'Inter-B';
+    color: white;
+}
+.theWorkoutBox {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    gap: 15px;
-    align-items: center;
+    padding: 8px;
+    gap: 10px;
+    background-color: #333333;
+    border-radius: 0.5em;
+}
+.workoutBoxHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 5px;
+    border-bottom: 1px solid rgb(32, 32, 32);
+}
+.workoutBoxHeaderName {
+    font-weight: bold;
+}
+.workoutBoxHeaderDate {
+    color: #bdbdbd;
+    font-family: 'Inter';
+}
+.workoutBoxMain {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 5px;
+}
+.workoutExercisesInfoText {
+    color: white;
+    padding-right: 5px;
+}
+.workoutExercisesInfo {
+    display: flex;
+    flex-direction: column;
+    color: #bdbdbd;
 }
 
-.mainIconText {
-    padding-left: 8px;
-    color: white;
-    font-family: "Inter-B";
-    font-size: 22px; 
-}
-#welcomeText {
-    padding-top: 30px;
-    font-size: 32px; 
-    font-family: "Inter-B";
-    color: white;
+.spanStyle {
+    font-family: 'Inter';
 }
 #leftCornerLogo  {
     display: flex;

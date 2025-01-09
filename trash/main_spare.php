@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="icon" type="image/jpg" href="contents/images/troll.jpg">
+        <link rel="icon" type="image/jpg" href="../contents/images/troll.jpg">
         <title> FACEIT </title>
-        <link rel="stylesheet" href="styles/main_style.css?v=<?= time(); ?>">
+        <link rel="stylesheet" href="../styles/main_style.css?v=<?= time(); ?>">
         <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header> 
             <div id="leftCornerLogo"> 
                 <div id="logo">
-                    <img id="logoIMG" src="contents/images2/image.png"/>
+                    <img id="logoIMG" src="../contents/images2/image.png"/>
                     <div id="logoTitle">  PeakFit  </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="iconContainer">        
                     <!-- <i class="fa-solid fa-user fa-5x icons" class="icons"></i> -->
-                    <img class="icons" src="contents/images/faceit.jpg" id="kubica">
+                    <img class="icons" src="../contents/images/faceit.jpg" id="kubica">
                     <div class="iconText">User</div>
                 </div>
                 <div class="iconContainer">
@@ -36,11 +36,11 @@
             <div class="mainIconsContainer">
                 <div id="welcomeText">  Welcome back! </div>
 
-                <a class="mainiconContainer" href="new_workout.php">
+                <a class="mainiconContainer" href="../public/views/new_workout.php">
                     <i class="fa-solid fa-plus fa-3x mainicons"></i>
                         <div class="mainIconText">New workout</div>
                 </a>
-                <a class="mainiconContainer" href="exercises_list.php">
+                <a class="mainiconContainer" href="../public/views/exercises_list.php">
                     <i class="fa-solid fa-dumbbell fa-3x mainicons"></i>
                         <div class="mainIconText">Exercises</div>
                 </a>

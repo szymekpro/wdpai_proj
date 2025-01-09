@@ -14,7 +14,7 @@
         <div id="logoTitle">  PeakFit  </div>
     </div>
 
-    <form class="login" action="login" method="POST">
+    <form class="login" action="/login" method="POST">
         <div class="loginMessage">
             <?php
             if (isset($messages)) {

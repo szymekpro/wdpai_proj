@@ -12,6 +12,10 @@ class DefaultController extends AppController
     {
         $this->render('main');
     }
+    public function exercises()
+    {
+        $this->render('exercises_list');
+    }
 }
 
 ?>

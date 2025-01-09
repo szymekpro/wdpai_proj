@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/src/controllers/DefaultController.php';
 require_once __DIR__ . '/src/controllers/SecurityController.php';
+require_once __DIR__ . '/src/controllers/WorkoutController.php';
 
 
 class Routing
@@ -15,6 +16,7 @@ class Routing
     public static function post($url, $controller) {
         self::$routes[$url] = $controller;
     }
+
     public static function run($url) {
         $action = explode("/",$url)[0];
         if (!array_key_exists($action, self::$routes)) {

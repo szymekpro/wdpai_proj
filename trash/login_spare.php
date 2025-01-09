@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="icon" type="image/jpg" href="contents/images/troll.jpg">
+        <link rel="icon" type="image/jpg" href="../contents/images/troll.jpg">
         <title> FACEIT </title>
-        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="../styles/style.css">
         <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
         <div id="main">
         <div id="logo">
-                <img id="logoIMG" src="contents/images2/image.png"/>
+                <img id="logoIMG" src="../contents/images2/image.png"/>
                 <div id="logoTitle">  PeakFit  </div>
              </div>
 
-            <form action="public/views/login.php" method="POST">
+            <form action="../public/views/login.php" method="POST">
 
                 <div id="loginBox">
 

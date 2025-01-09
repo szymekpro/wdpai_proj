@@ -1,21 +1,24 @@
 <?php
 
-namespace src\models;
-
 class Exercise
 {
+    private $id;
     private $name;
     private $photo_path;
     private $description;
-    private $muscle_group;
+    private $category;
     private $difficulty;
 
-    public function __construct(string $name, string $photo_path, string $description, string $muscle_group,string $difficulty) {
+    public function __construct(int $id, string $name, string $photo_path, string $description, string $category,string $difficulty) {
+        $this->id = $id;
         $this->name = $name;
         $this->photo_path = $photo_path;
         $this->description = $description;
-        $this->muscle_group = $muscle_group;
+        $this->category = $category;
         $this->difficulty = $difficulty;
+    }
+    public function getId(): int {
+        return $this->id;
     }
     public function getName(): string {
         return $this->name;
@@ -26,8 +29,8 @@ class Exercise
     public function getDescription(): string {
         return $this->description;
     }
-    public function getMuscleGroup(): string {
-        return $this->muscle_group;
+    public function getCategory(): string {
+        return $this->category;
     }
     public function getDifficulty(): string {
         return $this->difficulty;

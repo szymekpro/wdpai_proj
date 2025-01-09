@@ -21,29 +21,47 @@ a {
 .exercisesContainer {
 
 }
-/* The entire scrollbar */
 ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
-    height: 12px; /* Height of the scrollbar for horizontal bars */
+    width: 12px;
+    height: 12px;
 }
 
-/* The track (background of the scrollbar) */
 ::-webkit-scrollbar-track {
-    background: rgb(32, 32, 32); /* Light grey */
-    border-radius: 10px; /* Optional: adds rounding */
+    background: rgb(32, 32, 32);
+    border-radius: 10px;
 }
 
-/* The handle (scroll thumb) */
 ::-webkit-scrollbar-thumb {
-    background: #888; /* Darker grey */
-    border-radius: 10px; /* Optional: adds rounding */
+    background: #888;
+    border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #333333; /* Even darker grey */
+    background: #333333;
 }
-
+.searchElements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#searchInput {
+    margin-top:  4px;
+    margin-bottom:  4px;
+    color: white;
+    font-family: 'Inter-B';
+    height: 25px;
+    width: 200px;
+    padding: 2px;
+    background-color: #333333;
+    border: none;
+    border-radius: 0.25em;
+}
+#searchInput::placeholder {
+    color: #6f6e6e;
+    font-family: "Inter";
+    font-size: 14px;
+    opacity: 1;
+}
 .exercise {
     padding: 7px;
     display: flex;

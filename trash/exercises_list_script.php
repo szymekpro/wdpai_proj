@@ -4,7 +4,7 @@ require_once __DIR__ . '/src/repository/ExerciseRepository.php'; // Adjust path 
 require_once __DIR__ . '/db/Database.php';
 require_once __DIR__ . '/src/models/Exercise.php';
 
-$exerciseRepository = new \src\repository\ExerciseRepository();
+$exerciseRepository = new ExerciseRepository();
 $exerciseList = $exerciseRepository->getAllExercises();
 
 if (!empty($exerciseList)) {
