@@ -3,6 +3,7 @@
 require_once __DIR__ . '/src/controllers/DefaultController.php';
 require_once __DIR__ . '/src/controllers/SecurityController.php';
 require_once __DIR__ . '/src/controllers/WorkoutController.php';
+require_once __DIR__ . '/src/controllers/WorkoutInfoController.php';
 
 
 class Routing

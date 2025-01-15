@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'AppController.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../repository/UserRepository.php';
@@ -7,7 +7,8 @@ require_once __DIR__ . '/../repository/UserRepository.php';
 class SecurityController extends AppController
 {
     public function login() {
-        session_start();
+
+        //session_start();
 
         $userRepository = new UserRepository();
 
@@ -30,6 +31,7 @@ class SecurityController extends AppController
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
         $_SESSION['user_email'] = $user->getEmail();
+        $_SESSION['user_id'] = $user->getId();
         //echo $_SESSION['user_email'];
         return $this->render('main');
     }

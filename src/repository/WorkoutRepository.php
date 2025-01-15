@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+//session_start();
 
 require_once __DIR__ . '/Repository.php';
 require_once __DIR__ . '/../models/Workout.php';
@@ -26,7 +26,7 @@ class WorkoutRepository extends Repository
             return null;
         }
 
-        return new Workout($results['id'],$results['name'], $results['email'], $results['date']);
+        return new Workout($results['name'], $results['email'], $results['date']);
 
     }
 
@@ -37,7 +37,7 @@ class WorkoutRepository extends Repository
         }
         $userEmail = $_SESSION['user_email'];
 
-        $stmt = $this->db->connect()->prepare("SELECT w.id id,w.name name, u.email email, w.date date FROM public.workouts w
+        $stmt = $this->db->connect()->prepare("SELECT w.name name, u.email email, w.date date FROM public.workouts w
                     join users u on w.user_id = u.id where u.email = :email");
         $stmt->bindParam(":email", $email, PDO::PARAM_STR);
         $stmt->execute();
@@ -49,7 +49,6 @@ class WorkoutRepository extends Repository
         $workouts = [];
         foreach ($results as $row) {
             $workouts[] = new Workout(
-                $row['id'],
                 $row['name'],
                 $row['email'],
                 $row['date']);
@@ -112,4 +111,51 @@ class WorkoutRepository extends Repository
 
 
     }
+
+    public function addWorkout(Workout $workout) : void {
+
+        $stmt = $this->db->connect()->prepare('
+        INSERT INTO public.workouts(user_id, name, date, created_at) 
+        VALUES (?,?,?,?)
+        ');
+
+        if (!isset($_SESSION['user_id'])) {
+            die("User not logged in!");
+        }
+        $userid = $_SESSION['user_id'];
+
+        $dateCreatedAt = new DateTime();
+        $workoutDate = $workout->getDate();
+        echo $workoutDate;
+
+        $dateCreatedAt = $dateCreatedAt->format('Y-m-d H:i:s');
+        //$workoutDate = $workoutDate->format('Y-m-d');
+
+        $result = $stmt->execute([
+            $userid,
+            $workout->getName(),
+            $workoutDate,
+            $dateCreatedAt,
+        ]);
+
+        if (!$result) {
+            $errorInfo = $stmt->errorInfo();
+            echo "Błąd podczas wykonywania zapytania: " . $errorInfo[2];
+        }
+    }
+
+    public function getWorkoutIdByName(string $name): int
+    {
+        $stmt = $this->db->connect()->prepare("SELECT id FROM public.workouts WHERE name = :name");
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$result) {
+            throw new Exception('Nie znaleziono treningu o podanej nazwie!');
+        }
+
+        return (int) $result['id'];
+    }
+
 }

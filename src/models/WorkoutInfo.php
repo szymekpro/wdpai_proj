@@ -9,7 +9,7 @@ class WorkoutInfo
     private $weight;
     private $notes;
 
-    public function __construct(int $workoutId, int $exerciseId,int $sets, array $reps, float $weight, string $notes) {
+    public function __construct(int $workoutId, int $exerciseId,int $sets, $reps, float $weight, string $notes) {
         $this->workoutId = $workoutId;
         $this->exerciseId = $exerciseId;
         $this->sets = $sets;
@@ -35,7 +35,7 @@ class WorkoutInfo
     public function setSets($sets) {
         $this->sets = $sets;
     }
-    public function getReps() : array {
+    public function getReps() {
         return $this->reps;
     }
     public function setReps($reps) {

@@ -10,7 +10,10 @@ Routing::get('','DefaultController');
 Routing::get('main','DefaultController');
 Routing::get('exercises','DefaultController');
 Routing::post('login','SecurityController');
-Routing::post('new','WorkoutController');
+Routing::get('new','DefaultController');
+Routing::post('add','WorkoutController');
+Routing::post('assign','WorkoutInfoController');
+Routing::post('delete','WorkoutController');
 Routing::run($path);
 
 ?>

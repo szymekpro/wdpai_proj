@@ -9,8 +9,7 @@ class Workout
     private $exercisesDataList = [];
     private $date;
 
-    public function __construct(int $id, string $name, string $userEmail, string $date) {
-        $this->id = $id;
+    public function __construct(string $name, string $userEmail, string $date) {
         $this->name = $name;
         $this->userEmail = $userEmail;
         $this->date = $date;

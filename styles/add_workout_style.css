@@ -25,7 +25,7 @@ a {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
 }
 .iconContainer {
     display: flex;
@@ -46,8 +46,10 @@ a {
     background-color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 .workoutButtons {
     display: flex;
@@ -127,7 +129,47 @@ a {
     color: #bdbdbd;
 }
 .addWorkoutBox {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    color: white;
+    font-family: 'Roboto';
+    width: 500px;
+    height: 175px;
+}
+.workoutNameBox
+{
+    gap: 10px;
+    display: flex;
+    width: 200px;
+    flex-direction: row;
+}
+.workoutLabel {
+    font-size: 20px;
+}
+#workoutNameInput {
+    width: inherit;
+    height: 25px;
+}
+.workoutDateBox {
+    gap: 10px;
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+}
+#workoutDateInput {
+    width: inherit;
+    height: 25px;
+}
+#workoutAddButton {
+    width: 70px;
+    height: 40px;
+}
+.exerciseBox {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 .spanStyle {
     font-family: 'Inter';
@@ -137,7 +179,7 @@ a {
     justify-content: left;
     align-self: start;
     padding: 10px;
-    
+
 }
 #logo {
     display: flex;
@@ -146,17 +188,17 @@ a {
     align-items: center;
 }
 #logoIMG {
-    width: 100px; 
+    width: 100px;
     height: auto
 }
 #logoTitle {
     display: flex;
-    color: white; 
-    font-size: 26px; 
-    font-family: 'Inter'; 
-    font-style: italic; 
-    font-weight: 500; 
-    
+    color: white;
+    font-size: 26px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 500;
+
 }
 footer {
     background-color: #333333;
@@ -177,7 +219,7 @@ footer {
     font-family: 'Roboto';
     font-weight: 200;
     padding-left: 8px;
-    
+
 }
 #footerBox {
     margin: 12.5px;
@@ -187,13 +229,13 @@ footer {
     gap: 300px;
 }
 .mainicons {
-   
+
     color: white;
     width: 70px;
 }
 .icons {
     color: white;
-    
+
 }
 .fa-solid.fa-user {
     color: rgb(228, 137, 33);

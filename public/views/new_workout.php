@@ -33,8 +33,12 @@
 
         <div id="main">
             <div class="workoutButtons">
-                <button class="wButton"> + new </button>
-                <button class="wButton"> - delete </button>
+                <a href="/add">
+                    <button class="wButton"> + new </button>
+                </a>
+                <a href="/delete">
+                    <button class="wButton"> - delete </button>
+                </a>
             </div>
             <div class="workoutText"> Your workouts:</div>
             <?php
@@ -51,9 +55,8 @@
             $workouts = $workoutRepository->getAllWorkouts($email);
             echo '<div class="workoutBox">';
                 foreach ($workouts as $workout) {
-                $workoutId = $workout->getId();
 
-                $workoutInfo = $workoutInfoRepository->getWorkoutInfoByWorkout($workoutId);
+                $workoutInfo = $workoutInfoRepository->getWorkoutInfoByWorkout($workout);
 
                 echo '<div class="theWorkoutBox"><div class="workoutBoxHeader"><div class="workoutBoxHeaderName">' . htmlspecialchars($workout->getName()) .'</div><div class="workoutBoxHeaderDate">' . htmlspecialchars($workout->getDate()) . '</div>';
                         $workoutRepository->setWorkoutExercises($workout);
