@@ -9,14 +9,14 @@ class WorkoutRepository extends Repository
 {
 
 
-    public function getWorkout(string $email,string $name) : ?Workout {
+    public function getWorkout(string $email,int $id) : ?Workout {
 
         $stmt = $this->db->connect()->prepare(
             "SELECT w.id id, w.name name, u.email email, w.date date 
                     FROM public.workouts w
                     join users u on w.user_id = u.id
-                    where w.name = :name and u.email = :email");
-        $stmt->bindParam(":name", $name, PDO::PARAM_STR);
+                    where w.id = :id and u.email = :email");
+        $stmt->bindParam(":id", $id, PDO::PARAM_STR);
         $stmt->bindParam(":email", $email, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -157,5 +157,20 @@ class WorkoutRepository extends Repository
 
         return (int) $result['id'];
     }
+
+    public function deleteWorkout($workoutId)
+    {
+        $stmt = $this->db->connect()->prepare("DELETE FROM public.workouts WHERE id = :id");
+        $stmt->bindParam(':id', $workoutId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function updateWorkout($workoutId, $name, $date)
+    {
+        $stmt = $this->db->connect()->prepare('UPDATE public.workouts SET name = ?, date = ? WHERE id = ?');
+        $stmt->execute([$name, $date, $workoutId]);
+    }
+
+
 
 }

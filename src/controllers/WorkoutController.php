@@ -45,7 +45,4 @@ class WorkoutController extends AppController
         $this->render('add_workout', ['messages' => $this->messages]);
     }
 
-    public function delete() {
-        $this->render('delete_workout', ['messages' => $this->messages]);
-    }
 }

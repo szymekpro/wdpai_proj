@@ -5,6 +5,7 @@
     <title> FACEIT </title>
     <link rel="stylesheet" href="../../styles/add_workout_style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <header>
@@ -44,8 +45,8 @@
 
         <div id="exerciseContainer">
             <div class="exerciseBox">
-                <label>Wybierz Ćwiczenie:</label>
-                <select name="exercises[exercise_id][]" required>
+                <div class="exerciseChoiceBox">
+                    <select name="exercises[exercise_id][]" required>
                     <?php
                     require_once __DIR__ . '/../../src/repository/ExerciseRepository.php';
                     $exerciseRepository = new ExerciseRepository();
@@ -56,16 +57,22 @@
                         echo '<option value="' . $exercise->getId() . '">' . $exercise->getName() . '</option>';
                     }
                     ?>
-                </select>
-                <label>Serie:</label>
-                <input type="number" name="exercises[sets][]" required>
-                <label>Powtórzenia:</label>
-                <input type="text" name="exercises[reps][]" required>
-                <label>Obciążenie (kg):</label>
-                <input type="number" step="0.1" name="exercises[weight][]" required>
-                <label>Notatki:</label>
-                <input type="text" name="exercises[notes][]" required>
+                    </select>
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="number" name="exercises[sets][]" required placeholder="sets">
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="text" name="exercises[reps][]" required placeholder="reps">
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="number" step="0.1" name="exercises[weight][]" required placeholder="weight">
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="text" name="exercises[notes][]" required placeholder="notes">
+                </div>
                 <button type="button" class="removeExerciseButton">Usuń</button>
+
             </div>
         </div>
 
@@ -91,6 +98,9 @@
     </script>
 
 </div>
+
+
+
 
 <footer>
     <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>

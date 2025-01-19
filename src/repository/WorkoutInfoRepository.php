@@ -63,4 +63,43 @@ class WorkoutInfoRepository extends Repository
         }
     }
 
+    public function deleteWorkoutExercises($workoutId)
+    {
+        $stmt = $this->db->connect()->prepare("DELETE FROM public.workout_exercises WHERE workout_id = :id");
+        $stmt->bindParam(':id', $workoutId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function updateWorkoutExercise($workoutId, $exerciseId, $sets, $reps, $weight, $notes)
+    {
+        $formattedReps = '{' . implode(',', explode(',', trim($reps, '{}'))) . '}';
+        //echo 'new reps: ' . $formattedReps . '<br>';
+
+        $stmt = $this->db->connect()->prepare(
+            'UPDATE public.workout_exercises 
+            SET sets = ?, reps = ?, weight = ?, notes = ? 
+            WHERE workout_id = ? AND exercise_id = ?'
+        );
+        $stmt->execute([$sets, $formattedReps, (float)$weight, $notes, $workoutId, $exerciseId]);
+    }
+
+    public function exerciseExists($workoutId, $exerciseId)
+    {
+        $stmt = $this->db->connect()->prepare(
+            'SELECT COUNT(*) FROM public.workout_exercises WHERE workout_id = ? AND exercise_id = ?'
+        );
+        $stmt->execute([$workoutId, $exerciseId]);
+        return $stmt->fetchColumn() > 0;
+    }
+
+    public function addWorkoutExercise($workoutId, $exerciseId, $sets, $reps, $weight, $notes)
+    {
+        $formattedReps = '{' . implode(',', array_map('intval', explode(',', trim($reps)))) . '}';
+        $stmt = $this->db->connect()->prepare(
+            'INSERT INTO public.workout_exercises (workout_id, exercise_id, sets, reps, weight, notes) 
+         VALUES (?, ?, ?, ?, ?, ?)'
+        );
+        $stmt->execute([$workoutId, $exerciseId, $sets, $formattedReps, (float)$weight, $notes]);
+    }
+
 }

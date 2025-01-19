@@ -36,9 +36,6 @@
                 <a href="/add">
                     <button class="wButton"> + new </button>
                 </a>
-                <a href="/delete">
-                    <button class="wButton"> - delete </button>
-                </a>
             </div>
             <div class="workoutText"> Your workouts:</div>
             <?php
@@ -48,43 +45,102 @@
 
             $workoutRepository = new WorkoutRepository();
             $workoutInfoRepository = new WorkoutInfoRepository();
+
             if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+                session_start();
             }
             $email = $_SESSION['user_email'];
             $workouts = $workoutRepository->getAllWorkouts($email);
+
             echo '<div class="workoutBox">';
-                foreach ($workouts as $workout) {
-
+            foreach ($workouts as $workout) {
                 $workoutInfo = $workoutInfoRepository->getWorkoutInfoByWorkout($workout);
+                $workoutName = $workout->getName();
+                $workoutId = $workoutRepository->getWorkoutIdByName($workoutName);
 
-                echo '<div class="theWorkoutBox"><div class="workoutBoxHeader"><div class="workoutBoxHeaderName">' . htmlspecialchars($workout->getName()) .'</div><div class="workoutBoxHeaderDate">' . htmlspecialchars($workout->getDate()) . '</div>';
-                        $workoutRepository->setWorkoutExercises($workout);
-                        echo '</div><div class="workoutBoxMain">';
-                        foreach ($workout->getExercisesList() as $exercise) {
-                        echo '<div class="workoutExercisesInfo">';
+                echo '<div class="theWorkoutBox">
+                <div class="workoutBoxHeader">
+                    <div class="workoutBoxHeaderName">' . htmlspecialchars($workout->getName()) . '</div>
+                    <div class="workoutBoxHeaderDate">' . htmlspecialchars($workout->getDate()) . '</div>
+                    <button class="workoutDeleteField" data-workout-id="' . htmlspecialchars($workoutId) . '"> delete </button>
+                    <a href="/edit?id=' . $workoutId . '">
+                    <button class="workoutEditField"  data-workout-id="' . htmlspecialchars($workoutId) . '"> edit </button>
+                    </a>';
+                $workoutRepository->setWorkoutExercises($workout);
 
-                            foreach ($workoutInfo as $workoutInf) {
-                            if ($exercise->getId() == $workoutInf->getExerciseId()) {
+                echo '</div><div class="workoutBoxMain">';
 
-                            echo '<div class="workoutExercisesInfoText">' . $exercise->getName() . '</div>'. '<div class="workoutExercisesInfoBox">' . " sets: " . '<span class="spanStyle">' . $workoutInf->getSets().  '</span>'. " reps:" . '<span class="spanStyle">' . ' ';
+                foreach ($workout->getExercisesList() as $exercise) {
+                    echo '<div class="workoutExercisesInfo">';
+                    foreach ($workoutInfo as $workoutInf) {
+                        if ($exercise->getId() == $workoutInf->getExerciseId()) {
+                            echo '<div class="workoutExercisesInfoText">' . $exercise->getName() . '</div>
+                          <div class="workoutExercisesInfoBox"> 
+                              sets: <span class="spanStyle">' . $workoutInf->getSets() . '</span> 
+                              reps: <span class="spanStyle">';
 
-                                foreach ($workoutInf->getReps() as $rep) {
-
-                                    echo $rep . ', ';
-                                }
-                                echo '</span>'." weight: " . '<span class="spanStyle">'.$workoutInf->getWeight() . '</span>' . " kg" . '</div> ';
+                            foreach ($workoutInf->getReps() as $rep) {
+                                echo $rep . ', ';
                             }
-                            }
-                            echo '</div>';
+                            echo '</span> weight: <span class="spanStyle">' . $workoutInf->getWeight() . ' kg</span>
+                          </div>';
                         }
-                        echo '</div></div><br>';
+                    }
+                    echo '</div>';
                 }
-                echo '</div>';
+
+                echo '</div></div><br>';
+            }
+            echo '</div>';
             ?>
         </div>
+<!--        workoutDelete-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const workoutDeleteFields = document.querySelectorAll('.workoutDeleteField');
 
-        <footer>    
+                workoutDeleteFields.forEach(button => {
+                    button.addEventListener('click', function () {
+                        // Pobieramy ID treningu z atrybutu data-workout-id
+                        const workoutId = button.getAttribute('data-workout-id');
+
+                        if (workoutId) {
+                            console.log('Workout ID:', workoutId);
+                            const requestID = JSON.stringify({ workout_id: workoutId });
+                            console.log('Request workout ID:', requestID);
+
+                            // Tworzymy żądanie DELETE
+                            const request = {
+                                method: 'POST',
+                                body: requestID,
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                            };
+
+                            fetch('/delete', request)
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert('Trening został pomyślnie usunięty!');
+                                        location.reload();  // Odświeżenie strony po sukcesie
+                                    } else {
+                                        alert('Błąd: ' + data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Błąd podczas żądania:', error);
+                                });
+                        } else {
+                            console.error('Brak ID treningu!');
+                        }
+                    });
+                });
+            });
+
+        </script>
+        <!--workoutEdit-->
+        <footer>
         <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>
             <div id="footerBox">
                 <a href="https://www.facebook.com/" target="_blank">

@@ -38,6 +38,10 @@ class WorkoutInfo
     public function getReps() {
         return $this->reps;
     }
+    public function repsToString(): string {
+        $result = implode(',', $this->reps);
+        return $result;
+    }
     public function setReps($reps) {
         $this->reps = $reps;
     }

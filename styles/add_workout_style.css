@@ -49,6 +49,7 @@ a {
     align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
+    overflow-y: scroll;
 
 }
 .workoutButtons {
@@ -99,6 +100,7 @@ a {
     background-color: #333333;
     border-radius: 0.5em;
 }
+
 .workoutBoxHeader {
     display: flex;
     flex-direction: row;
@@ -136,43 +138,94 @@ a {
     color: white;
     font-family: 'Roboto';
     width: 500px;
-    height: 175px;
+    height: 300px;
 }
-.workoutNameBox
+.addWorkoutBoxHead {
+    border-bottom: 1px solid #333333;
+}
+.workoutTextBox
 {
     gap: 10px;
     display: flex;
     width: 200px;
+    height: 30px;
     flex-direction: row;
 }
 .workoutLabel {
     font-size: 20px;
 }
 #workoutNameInput {
-    width: inherit;
-    height: 25px;
+    width: 200px;
+    height: 30px;
 }
 .workoutDateBox {
     gap: 10px;
     width: 200px;
+    height: 30px;
     display: flex;
     flex-direction: row;
 }
+
 #workoutDateInput {
-    width: inherit;
-    height: 25px;
+    width: 200px;
+    height: 30px;
 }
 #workoutAddButton {
     width: 70px;
     height: 40px;
 }
-.exerciseBox {
+#exerciseContainer {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
+.exerciseBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    gap: 8px;
+    padding-top: 8px;
+}
+#editWorkoutForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+}
+.exerciseChoiceBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 30px;
+
+}
+.exerciseChoiceInput {
+    width: 200px;
+    height: 30px;
+}
+.removeExerciseButton {
+    margin-top: 10px;
+    width: 100px;
+}
+
 .spanStyle {
     font-family: 'Inter';
+}
+.addWorkoutButtonArea
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #333333;
 }
 #leftCornerLogo  {
     display: flex;
