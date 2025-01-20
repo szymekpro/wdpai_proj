@@ -39,45 +39,58 @@
 </header>
 
 <div id="main">
-    <div class="mainIconsContainer">
-        <div id="welcomeText">  Welcome back! </div>
+    <div class="calculatorContainer">
+        <h2>Kalkulator 1RM</h2>
+        <form id="oneRepMaxCalculator">
+            <label for="exercise">Wybierz ćwiczenie:</label>
+            <select id="exercise" name="exercise">
+                <option value="squat">Przysiad</option>
+                <option value="benchPress">Wyciskanie na ławce</option>
+                <option value="deadlift">Martwy ciąg</option>
+                <option value="rows">Wiosłowanie</option>
+            </select>
 
-        <a class="mainiconContainer" href="/workouts">
-            <i class="fa-solid fa-plus fa-3x mainicons"></i>
-            <div class="mainIconText">Workouts</div>
-        </a>
-        <a class="mainiconContainer" href="/exercises">
-            <i class="fa-solid fa-dumbbell fa-3x mainicons"></i>
-            <div class="mainIconText">Exercises</div>
-        </a>
-        <div class="mainiconContainer">
-            <i class="fa-solid fa-chart-simple fa-3x mainicons dropdown-toggle"></i>
-            <button id="dropdownButton" onclick="showHide()">Tools</button>
-        </div>
+            <label for="weight">Waga (kg):</label>
+            <input type="number" id="weight" name="weight" required>
 
+            <label for="reps">Liczba powtórzeń:</label>
+            <input type="number" id="reps" name="reps" required>
+
+            <button type="submit">Oblicz 1RM</button>
+        </form>
+
+        <div class="result" id="result"></div>
     </div>
-    <div id="dropdown-menu">
-        <a href="/calorie">Calorie calculator</a>
-        <a href="/onerepmax">1RM calculator</a>
-        <a href="/bmi">BMI calculator</a>
-    </div>
+
 </div>
 <script>
-    const div = document.getElementById('dropdown-menu');
-    div.style.display = 'none'
-    var display =1;
-    function showHide() {
-        if (display == 1) {
-            div.style.display = 'flex'
-            display = 0;
-        }else {
-            div.style.display = 'none'
-            display = 1;
+    document.getElementById('oneRepMaxCalculator').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const weight = parseFloat(document.getElementById('weight').value);
+        const reps = parseInt(document.getElementById('reps').value);
+        const exercise = document.getElementById('exercise').value;
+
+        if (!weight || !reps || !exercise) {
+            document.getElementById('result').innerText = "Proszę wprowadzić wszystkie dane.";
+            return;
         }
-    }
 
+        let oneRepMax = 0;
+        if (exercise === "squat") {
+            oneRepMax = weight * (1 + 0.0333 * reps);
+        } else if (exercise === "benchPress") {
+            oneRepMax = weight * (1 + 0.025 * reps);
+        } else if (exercise === "deadlift") {
+            oneRepMax = weight * (1 + 0.0277 * reps);
+        } else if (exercise === "rows") {
+            oneRepMax = weight * (1 + 0.0333 * reps);
+        }
 
+        oneRepMax = oneRepMax.toFixed(2);
 
+        document.getElementById('result').innerText = `Twoje 1RM dla tego ćwiczenia to: ${oneRepMax} kg`;
+    });
 </script>
 <footer>
     <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>

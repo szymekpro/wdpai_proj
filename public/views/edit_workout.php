@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="../../contents/images/troll.jpg">
+    <link rel="icon" type="image/jpg" href="../../contents/images-spare/troll.jpg">
     <title> FACEIT </title>
     <link rel="stylesheet" href="../../styles/add_workout_style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
@@ -78,14 +78,15 @@
                         }
 
 
-                        echo '<select name="exercises[exercise_id][]" required>' . $dynamicOptions . '</select>
+                        echo '<select id="selectExerciseBox" name="exercises[exercise_id][]" required>' . $dynamicOptions . '</select>
                               <div class="exerciseChoiceBox"><input class="exerciseChoiceInput" type="number" name="exercises[sets][]" required value="'. htmlspecialchars($workoutInf->getSets()) .'"></div>                         
                               <div class="exerciseChoiceBox">
                               <input class="exerciseChoiceInput" type="text" name="exercises[reps][]" required value="' . htmlspecialchars($workoutInf->repsToString()) . '"></div>
                             <div class="exerciseChoiceBox">
                             <input class="exerciseChoiceInput" type="number" step="0.1" name="exercises[weight][]" required value="'. htmlspecialchars($workoutInf->getWeight()) .'"></div>
                             <div class="exerciseChoiceBox"><input class="exerciseChoiceInput" type="text" name="exercises[notes][]" required value="' .htmlspecialchars($workoutInf->getNotes()) . '"></div>
-                          <button type="button" class="removeExerciseButton">Usuń</button>
+                            <input type="hidden" name="existing_exercises[]" value="' . htmlspecialchars($workoutInf->getExerciseId()) . '">
+                          <button type="button" class="removeExerciseButton">Remove</button>
                           ';
                     }
 
@@ -94,66 +95,19 @@
             }
             ?>
             </div>
-        <button type="button" id="addExerciseButton">Dodaj Ćwiczenie</button>
-        <button type="submit" id="workoutEditButton">Sumbit edit</button>
+        <div id="removedExercisesContainer"></div>
+
+        <div class="workoutActionButtons">
+            <button type="button" id="addExerciseButton">Add Exercise</button>
+        </div>
+        <div class="workoutActionButtons">
+            <button type="submit" id="workoutAddButton">Add Workout</button>
+        </div>
+
         </div>
     </form>
 
 
-<!--    <?php
-//    require_once 'src/repository/WorkoutRepository.php';
-//    require_once 'src/repository/WorkoutInfoRepository.php';
-//    require_once 'src/models/Exercise.php';
-//
-//    $workoutRepository = new WorkoutRepository();
-//    $workoutInfoRepository = new WorkoutInfoRepository();
-//
-//    if (session_status() == PHP_SESSION_NONE) {
-//        session_start();
-//    }
-//    $email = $_SESSION['user_email'];
-//    $workout = $workoutRepository->getWorkout($email,$workoutId);
-//
-//    echo '<div class="workoutBox">';
-//
-//        $workoutInfo = $workoutInfoRepository->getWorkoutInfoByWorkout($workout);
-//        $workoutName = $workout->getName();
-//        $workoutId = $workoutRepository->getWorkoutIdByName($workoutName);
-//
-//        echo '<div class="theWorkoutBox">
-//                <div class="workoutBoxHeader">
-//                    <div class="workoutBoxHeaderName">' . htmlspecialchars($workout->getName()) . '</div>
-//                    <div class="workoutBoxHeaderDate">' . htmlspecialchars($workout->getDate()) . '</div>
-//                    <button class="workoutDeleteField" data-workout-id="' . htmlspecialchars($workoutId) . '"> delete </button>
-//                    <a href="/edit?id=' . $workoutId . '">
-//                    <button class="workoutEditField"  data-workout-id="' . htmlspecialchars($workoutId) . '"> edit </button>
-//                    </a>';
-//        $workoutRepository->setWorkoutExercises($workout);
-//
-//        echo '</div><div class="workoutBoxMain">';
-//
-//        foreach ($workout->getExercisesList() as $exercise) {
-//            echo '<div class="workoutExercisesInfo">';
-//            foreach ($workoutInfo as $workoutInf) {
-//                if ($exercise->getId() == $workoutInf->getExerciseId()) {
-//                    echo '<div class="workoutExercisesInfoText">' . $exercise->getName() . '</div>
-//                          <div class="workoutExercisesInfoBox">
-//                              sets: <span class="spanStyle">' . $workoutInf->getSets() . '</span>
-//                              reps: <span class="spanStyle">';
-//
-//                    foreach ($workoutInf->getReps() as $rep) {
-//                        echo $rep . ', ';
-//                    }
-//                    echo '</span> weight: <span class="spanStyle">' . $workoutInf->getWeight() . ' kg</span>
-//                          </div>';
-//                }
-//            }
-//            echo '</div>';
-//        }
-//
-//        echo '</div></div><br>';
-//    echo '</div>';
-//    ?> -->
 
 </div>
 <script>
@@ -182,8 +136,8 @@
 
         const weightInput = exerciseDiv.querySelector('input[name="exercises[weight][]"]');
         if (weightInput) {
-            weightInput.value = ''; // Wyczyść wartość
-            weightInput.placeholder = 'weight (kg)'; // Dodaj placeholder
+            weightInput.value = '';
+            weightInput.placeholder = 'weight (kg)';
         }
 
         const notesInput = exerciseDiv.querySelector('input[name="exercises[notes][]"]');
@@ -196,9 +150,25 @@
 
         const removeButton = exerciseDiv.querySelector('.removeExerciseButton');
         removeButton.addEventListener('click', () => {
-            exerciseDiv.remove();
+            if (exerciseContainer.children.length > 1) {
+                exerciseDiv.remove();
+            } else {
+                alert('Nie możesz usunąć wszystkich ćwiczeń! Co najmniej jedno ćwiczenie musi pozostać.');
+            }
         });
     });
+
+    document.querySelectorAll('.removeExerciseButton').forEach(removeButton => {
+        removeButton.addEventListener('click', (event) => {
+            const exerciseBoxes = document.querySelectorAll('.exerciseBox');
+            if (exerciseBoxes.length > 1) {
+                event.target.closest('.exerciseBox').remove();
+            } else {
+                alert('Nie możesz usunąć wszystkich ćwiczeń! Co najmniej jedno ćwiczenie musi pozostać.');
+            }
+        });
+    });
+
 </script>
 <footer>
     <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>

@@ -49,11 +49,12 @@ class WorkoutInfoController extends AppController
                 }
 
                 $this->messages[] = 'Trening i ćwiczenia zostały dodane pomyślnie!';
+
+                header("Location: workouts");
             } catch (Exception $e) {
                 $this->messages[] = 'Błąd podczas dodawania treningu i ćwiczeń: ' . $e->getMessage();
             }
 
-            $this->render('add_workout', ['messages' => $this->messages]);
         }
     }
 
@@ -62,10 +63,6 @@ class WorkoutInfoController extends AppController
 
 
         if ($this->isPost()) {
-           // $workoutId = $_POST['workout_id'] ?? null;
-            //echo $_POST['workout_id'];
-
-            //request workout ID: {"workout_id":"1"}
             $workoutId = json_decode(file_get_contents('php://input'), true)['workout_id'] ?? null;
 
             if (!$workoutId) {
@@ -82,11 +79,6 @@ class WorkoutInfoController extends AppController
             }
             exit;
         }
-
-        //$this->render('delete_workout', ['messages' => $this->messages]);
-        //$url = '/new';
-        //header("Location: $url");
-        //exit;
     }
 
     public function edit()
@@ -104,7 +96,7 @@ class WorkoutInfoController extends AppController
             }
 
             if (!$id) {
-                header("Location: /new");
+                header("Location: /workouts");
                 exit;
             }
 
@@ -121,12 +113,12 @@ class WorkoutInfoController extends AppController
                 return;
             }
 
-            // Pobierz dane z formularza
             $name = $_POST['name'] ?? null;
             $date = $_POST['date'] ?? null;
             $exercises = $_POST['exercises'] ?? null;
+            $removedExercises = $_POST['removed_exercises'] ?? [];
 
-            if (!$name || !$date || !$exercises) {
+            if (!$name || !$date ) {
                 echo json_encode(['success' => false, 'message' => 'Brakuje wymaganych pól']);
                 return;
             }
@@ -134,6 +126,10 @@ class WorkoutInfoController extends AppController
 
             try {
                 $this->workoutRepository->updateWorkout($id, $name, $date);
+
+                foreach ($removedExercises as $exerciseId) {
+                    $this->workoutInfoRepository->deleteExerciseFromWorkout($id, $exerciseId);
+                }
 
                 foreach ($exercises['exercise_id'] as $index => $exerciseId) {
                     $sets = $exercises['sets'][$index] ?? null;
@@ -157,7 +153,7 @@ class WorkoutInfoController extends AppController
                     }
                 }
 
-                header("Location: /new");
+                header("Location: /workouts");
                 exit;
 
             } catch (Exception $e) {

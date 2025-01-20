@@ -18,7 +18,7 @@
     <div id="headerOptions">
         <div class="iconContainer">
             <a href="/main"">
-                <i class="fa-solid fa-house fa-3x icons"></i></a>
+            <i class="fa-solid fa-house fa-3x icons"></i></a>
             <div class="iconText">Home</div>
         </div>
         <div class="iconContainer">
@@ -39,45 +39,52 @@
 </header>
 
 <div id="main">
-    <div class="mainIconsContainer">
-        <div id="welcomeText">  Welcome back! </div>
+    <div class="calculatorContainer">
+        <h2>Kalkulator BMI</h2>
+        <form id="bmiCalculator">
+            <label for="weight">Waga (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.1" required>
 
-        <a class="mainiconContainer" href="/workouts">
-            <i class="fa-solid fa-plus fa-3x mainicons"></i>
-            <div class="mainIconText">Workouts</div>
-        </a>
-        <a class="mainiconContainer" href="/exercises">
-            <i class="fa-solid fa-dumbbell fa-3x mainicons"></i>
-            <div class="mainIconText">Exercises</div>
-        </a>
-        <div class="mainiconContainer">
-            <i class="fa-solid fa-chart-simple fa-3x mainicons dropdown-toggle"></i>
-            <button id="dropdownButton" onclick="showHide()">Tools</button>
-        </div>
+            <label for="height">Wzrost (cm):</label>
+            <input type="number" id="height" name="height" step="0.1" required>
 
+            <button type="submit">Oblicz BMI</button>
+        </form>
+
+        <div class="result" id="result"></div>
     </div>
-    <div id="dropdown-menu">
-        <a href="/calorie">Calorie calculator</a>
-        <a href="/onerepmax">1RM calculator</a>
-        <a href="/bmi">BMI calculator</a>
-    </div>
+
 </div>
 <script>
-    const div = document.getElementById('dropdown-menu');
-    div.style.display = 'none'
-    var display =1;
-    function showHide() {
-        if (display == 1) {
-            div.style.display = 'flex'
-            display = 0;
-        }else {
-            div.style.display = 'none'
-            display = 1;
+    document.getElementById('bmiCalculator').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const weight = parseFloat(document.getElementById('weight').value);
+        const height = parseFloat(document.getElementById('height').value) / 100; // Zamiana cm na metry
+
+        if (!weight || !height) {
+            document.getElementById('result').innerText = "Proszę wprowadzić prawidłowe dane.";
+            return;
         }
-    }
 
+        const bmi = (weight / (height * height)).toFixed(2);
 
+        let interpretation = '';
+        if (bmi < 18.5) {
+            interpretation = 'Niedowaga';
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            interpretation = 'Waga prawidłowa';
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            interpretation = 'Nadwaga';
+        } else {
+            interpretation = 'Otyłość';
+        }
 
+        document.getElementById('result').innerHTML = `
+            Twoje BMI: <strong>${bmi}</strong> <br>
+            Interpretacja: <strong>${interpretation}</strong>
+        `;
+    });
 </script>
 <footer>
     <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>

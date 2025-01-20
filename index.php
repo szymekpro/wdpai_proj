@@ -15,11 +15,15 @@ Routing::get('','DefaultController');
 Routing::get('main','DefaultController');
 Routing::get('exercises','DefaultController');
 Routing::post('login','SecurityController');
-Routing::get('new','DefaultController');
+Routing::get('workouts','DefaultController');
 Routing::post('add','WorkoutController');
 Routing::post('assign','WorkoutInfoController');
 Routing::post('delete','WorkoutInfoController');
 Routing::post('edit','WorkoutInfoController');
+Routing::post('calorie','DefaultController');
+Routing::post('onerepmax','DefaultController');
+Routing::post('bmi','DefaultController');
+
 Routing::run($path);
 
 ?>

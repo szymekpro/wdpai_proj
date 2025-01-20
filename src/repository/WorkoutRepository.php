@@ -126,10 +126,7 @@ class WorkoutRepository extends Repository
 
         $dateCreatedAt = new DateTime();
         $workoutDate = $workout->getDate();
-        echo $workoutDate;
-
         $dateCreatedAt = $dateCreatedAt->format('Y-m-d H:i:s');
-        //$workoutDate = $workoutDate->format('Y-m-d');
 
         $result = $stmt->execute([
             $userid,

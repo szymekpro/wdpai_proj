@@ -29,14 +29,39 @@ class DefaultController extends AppController
         }
         $this->render('exercises_list');
     }
-    public function new()
+    public function workouts()
     {
         if (!isset($_SESSION['user_id'])) {
             $this->render('login');
             return;
         }
-        $this->render('new_workout');
+        $this->render('workouts');
     }
+    public function calorie()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            $this->render('login');
+            return;
+        }
+        $this->render('calorie_calculator');
+    }
+
+    public function onerepmax() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->render('login');
+            return;
+        }
+        $this->render('rm_calculator');
+    }
+
+    public function bmi() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->render('login');
+            return;
+        }
+        $this->render('bmi_calculator');
+    }
+
 }
 
 ?>

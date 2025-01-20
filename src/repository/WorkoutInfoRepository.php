@@ -32,7 +32,6 @@ class WorkoutInfoRepository extends Repository
                 $row['wid'],
                 $row['eid'],
                 $row['sets'],
-                //explode(',', $row['reps']),
                 explode(',', trim($row['reps'], '{}')),
                 (float) $row['weight'],
                 $row['notes']
@@ -100,6 +99,17 @@ class WorkoutInfoRepository extends Repository
          VALUES (?, ?, ?, ?, ?, ?)'
         );
         $stmt->execute([$workoutId, $exerciseId, $sets, $formattedReps, (float)$weight, $notes]);
+    }
+
+    public function deleteExerciseFromWorkout($workoutId, $exerciseId)
+    {
+        $stmt = $this->db->connect()->prepare("
+        DELETE FROM public.workout_exercises
+        WHERE workout_id = :workout_id AND exercise_id = :exercise_id
+    ");
+        $stmt->bindParam(':workout_id', $workoutId, PDO::PARAM_INT);
+        $stmt->bindParam(':exercise_id', $exerciseId, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
 }

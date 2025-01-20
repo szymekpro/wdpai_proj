@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="icon" type="image/jpg" href="../../contents/images/troll.jpg">
+        <link rel="icon" type="image/jpg" href="../../contents/images-spare/troll.jpg">
         <title> FACEIT </title>
         <link rel="stylesheet" href="../../styles/nw_style.css?v=<?= time(); ?>">
         <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
@@ -34,7 +34,7 @@
         <div id="main">
             <div class="workoutButtons">
                 <a href="/add">
-                    <button class="wButton"> + new </button>
+                    <button class="wButton"> New Workout </button>
                 </a>
             </div>
             <div class="workoutText"> Your workouts:</div>
@@ -62,10 +62,10 @@
                 <div class="workoutBoxHeader">
                     <div class="workoutBoxHeaderName">' . htmlspecialchars($workout->getName()) . '</div>
                     <div class="workoutBoxHeaderDate">' . htmlspecialchars($workout->getDate()) . '</div>
-                    <button class="workoutDeleteField" data-workout-id="' . htmlspecialchars($workoutId) . '"> delete </button>
+                    <div class="workoutActionButtons"><button class="workoutDeleteField" data-workout-id="' . htmlspecialchars($workoutId) . '"> delete </button>
                     <a href="/edit?id=' . $workoutId . '">
                     <button class="workoutEditField"  data-workout-id="' . htmlspecialchars($workoutId) . '"> edit </button>
-                    </a>';
+                    </a></div>';
                 $workoutRepository->setWorkoutExercises($workout);
 
                 echo '</div><div class="workoutBoxMain">';

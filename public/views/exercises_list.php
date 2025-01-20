@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="../../contents/images/troll.jpg">
+    <link rel="icon" type="image/jpg" href="../../contents/images-spare/troll.jpg">
     <title> FACEIT </title>
     <link rel="stylesheet" href="../../styles/exercises_list_style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>

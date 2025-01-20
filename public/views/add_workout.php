@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="../../contents/images/troll.jpg">
+    <link rel="icon" type="image/jpg" href="../../contents/images-spare/troll.jpg">
     <title> FACEIT </title>
     <link rel="stylesheet" href="../../styles/add_workout_style.css?v=<?= time(); ?>">
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
@@ -36,17 +36,17 @@
     <form class="addWorkoutBox" action="/assign" method="POST">
 
         <div class="workoutNameBox">
-            <input type="text" id="workoutNameInput" name="name" required placeholder="Nazwa treningu">
+            <input type="text" id="workoutNameInput" name="name" required placeholder="workout name">
         </div>
 
         <div class="workoutDateBox">
-            <input type="date" id="workoutDateInput" name="date" required placeholder="Data treningu">
+            <input type="date" id="workoutDateInput" name="date" required placeholder="date">
         </div>
 
         <div id="exerciseContainer">
             <div class="exerciseBox">
                 <div class="exerciseChoiceBox">
-                    <select name="exercises[exercise_id][]" required>
+                    <select id="selectExerciseBox" name="exercises[exercise_id][]" required>
                     <?php
                     require_once __DIR__ . '/../../src/repository/ExerciseRepository.php';
                     $exerciseRepository = new ExerciseRepository();
@@ -71,13 +71,17 @@
                 <div class="exerciseChoiceBox">
                     <input class="exerciseChoiceInput" type="text" name="exercises[notes][]" required placeholder="notes">
                 </div>
-                <button type="button" class="removeExerciseButton">Usuń</button>
+                <button type="button" class="removeExerciseButton">Remove</button>
 
             </div>
         </div>
 
-        <button type="button" id="addExerciseButton">Dodaj Ćwiczenie</button>
-        <button type="submit" id="workoutAddButton">Dodaj Trening</button>
+        <div class="workoutActionButtons">
+            <button type="button" id="addExerciseButton">Add Exercise</button>
+        </div>
+        <div class="workoutActionButtons">
+        <button type="submit" id="workoutAddButton">Add Workout</button>
+        </div>
 
     </form>
 
