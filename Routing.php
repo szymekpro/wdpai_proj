@@ -4,6 +4,7 @@ require_once __DIR__ . '/src/controllers/DefaultController.php';
 require_once __DIR__ . '/src/controllers/SecurityController.php';
 require_once __DIR__ . '/src/controllers/WorkoutController.php';
 require_once __DIR__ . '/src/controllers/WorkoutInfoController.php';
+require_once __DIR__ . '/src/controllers/ExerciseController.php';
 
 
 class Routing
@@ -19,6 +20,20 @@ class Routing
     }
 
     public static function run($url) {
+
+        $extension = pathinfo($url, PATHINFO_EXTENSION);
+        if (in_array($extension, ['js', 'css', 'jpg', 'png', 'gif', 'ico'])) {
+            // Bezpośrednie serwowanie pliku
+            $filePath = __DIR__ . '/' . $url;
+            echo json_encode($filePath);
+            if (file_exists($filePath)) {
+                header("Content-Type: " . mime_content_type($filePath));
+                readfile($filePath);
+                exit;
+            }
+            die("Plik nie istnieje: $url");
+        }
+
         $action = explode("/",$url)[0];
         if (!array_key_exists($action, self::$routes)) {
             die("Wrong url!");

@@ -60,8 +60,6 @@ class WorkoutInfoController extends AppController
 
     public function delete()
     {
-
-
         if ($this->isPost()) {
             $workoutId = json_decode(file_get_contents('php://input'), true)['workout_id'] ?? null;
 
@@ -96,6 +94,7 @@ class WorkoutInfoController extends AppController
             }
 
             if (!$id) {
+                echo json_encode(['success' => false, 'message' => 'Brakuje ID treningu']);
                 header("Location: /workouts");
                 exit;
             }
@@ -118,6 +117,10 @@ class WorkoutInfoController extends AppController
             $exercises = $_POST['exercises'] ?? null;
             $removedExercises = $_POST['removed_exercises'] ?? [];
 
+            foreach ($removedExercises as $exercise) {
+                //echo json_encode($exercise);
+            }
+
             if (!$name || !$date ) {
                 echo json_encode(['success' => false, 'message' => 'Brakuje wymaganych pól']);
                 return;
@@ -132,11 +135,13 @@ class WorkoutInfoController extends AppController
                 }
 
                 foreach ($exercises['exercise_id'] as $index => $exerciseId) {
+
                     $sets = $exercises['sets'][$index] ?? null;
                     $reps = $exercises['reps'][$index] ?? null;
                     $weight = $exercises['weight'][$index] ?? null;
                     $notes = $exercises['notes'][$index] ?? null;
 
+                    //echo 'e_id: '. $exerciseId .'<br>';
                     //echo 'sets: ' . $sets . '<br>';
                     //echo 'reps: ' . $reps . var_dump($reps). '<br>';
                     //echo 'weight: ' . $weight . '<br>';
@@ -146,7 +151,8 @@ class WorkoutInfoController extends AppController
                         throw new Exception('Niepoprawne dane dla ćwiczenia');
                     }
 
-                    if ($this->workoutInfoRepository->exerciseExists($id, $exerciseId)) {
+                    if ($this->workoutInfoRepository->exerciseExists($id, $exerciseId,$sets,$weight,$notes)) {
+
                         $this->workoutInfoRepository->updateWorkoutExercise($id, $exerciseId, $sets, $reps, $weight, $notes);
                     } else {
                         $this->workoutInfoRepository->addWorkoutExercise($id, $exerciseId, $sets, $reps, $weight, $notes);

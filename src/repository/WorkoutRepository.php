@@ -168,6 +168,11 @@ class WorkoutRepository extends Repository
         $stmt->execute([$name, $date, $workoutId]);
     }
 
-
+    public function deleteAllUserWorkouts(int $userId)
+    {
+        $stmt = $this->db->connect()->prepare("DELETE FROM public.workouts WHERE user_id = :id");
+        $stmt->bindParam(':id', $workoutId, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 
 }

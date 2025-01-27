@@ -18,7 +18,6 @@ header {
 a {
     text-decoration: none;
 }
-
 #headerOptions {
     position: absolute;
     width: 100%;
@@ -26,7 +25,49 @@ a {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
+
+}
+.goBackText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 6px;
+    color: white;
+    font-family: "Inter-B";
+    font-size: 18px;
+    margin-bottom: 7px;
+    margin-left: 8px;
+}
+.goBackButtonContainer {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    position: absolute;
+    margin-left: 20px;
+}
+.goBackButton {
+    width: 110px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333333;
+    border-radius: 10px;
+}
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.iconText {
+    padding-top: 6px;
+    color: white;
+    font-family: "Inter-B";
 }
 .logoutContainer {
     height: 40px;
@@ -43,18 +84,6 @@ a {
     margin-right: 30px;
     border-radius: 15px;
 }
-.iconContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-}
-.iconText {
-    padding-top: 6px;
-    color: white;
-    font-family: "Inter-B";
-}
 #main {
     width: 100%;
     height: 75%;
@@ -62,10 +91,11 @@ a {
     background-color: inherit;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
     overflow-y: scroll;
-    scrollbar-width: none;
-    
+
 }
 .workoutButtons {
     display: flex;
@@ -83,17 +113,17 @@ a {
     justify-content: center;
     align-items: center;
     height: 40px;
-    width: 200px;
-    border: none;
+    width: 100px;
     font-family: "Roboto";
-    font-size: 18px;
+    font-size: 15px;
     color: white;
-    background-color: rgb(228, 137, 33);
-    border-radius: 7px;
+    background-color: rgb(32, 32, 32);
+    border-radius: 5px;
+    border: 1px solid white;
 
 }
 .wButton:hover {
-    background-color: rgb(232, 156, 81);
+    background-color: #656565;
 }
 .workoutText {
     color: white;
@@ -103,53 +133,100 @@ a {
     padding: 10px;
 }
 .workoutBox {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    column-gap: 18px;
-    row-gap: 10px;
-    flex-wrap: wrap;
-    padding: 10px 50px 10px 50px;
+    padding: 10px;
     font-family: 'Inter-B';
     color: white;
 }
 .theWorkoutBox {
     display: flex;
     flex-direction: column;
-    min-width: 420px;
-    width: auto;
     padding: 8px;
     gap: 10px;
     background-color: #333333;
     border-radius: 0.5em;
-    box-sizing: border-box;
 }
-.theWorkoutDeleteBox {
+
+.workoutBoxHeader {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 5px;
+    border-bottom: 1px solid rgb(32, 32, 32);
+}
+.workoutBoxHeaderName {
+    font-weight: bold;
+}
+.workoutBoxHeaderDate {
+    color: #bdbdbd;
+    font-family: 'Inter';
+}
+.workoutBoxMain {
     display: flex;
     flex-direction: column;
-    padding: 8px;
-    gap: 10px;
-    background-color: #333333;
-    border-radius: 0.5em;
-    cursor: pointer;
+    gap: 5px;
+    padding-left: 5px;
 }
-.theWorkoutDeleteBox:hover {
-    background-color: #5a5a5a;
+.workoutExercisesInfoText {
+    color: white;
+    padding-right: 5px;
 }
-.theWorkoutDeleteBox.selected {
-    background-color: #5a5a5a;
-}
-#deleteBox {
+.workoutExercisesInfo {
     display: flex;
     flex-direction: column;
-    padding: 8px;
-    gap: 10px;
-    background-color: #333333;
-    border-radius: 0.5em;
-    cursor: pointer;
+    color: #bdbdbd;
 }
-#deleteBox.selected {
-    background-color: #5a5a5a;
+.addWorkoutBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    color: white;
+    font-family: 'Roboto';
+    width: 500px;
+    height: 300px;
+}
+.addWorkoutBoxHead {
+    border-bottom: 1px solid #333333;
+}
+.workoutTextBox
+{
+    gap: 10px;
+    display: flex;
+    width: 200px;
+    height: 30px;
+    flex-direction: row;
+}
+.workoutLabel {
+    font-size: 20px;
+}
+#workoutNameInput {
+    width: 200px;
+    height: 30px;
+    font-family: 'Inter';
+}
+.workoutDateBox {
+    gap: 10px;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+#workoutDateInput {
+    width: 200px;
+    height: 30px;
+    font-family: 'Inter-B';
+}
+#workoutAddButton {
+    width: 70px;
+    height: 40px;
+}
+#exerciseContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 ::-webkit-scrollbar {
     width: 12px;
@@ -169,98 +246,107 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #333333;
 }
-.workoutBoxHeader {
+#selectExerciseBox {
+    height: 37px;
+    width: 140px;
+    border-radius: 5px;
+    font-family: 'Inter-B';
+}
+.exerciseBox {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
     gap: 8px;
-    padding: 0px 7px 7px 7px;
-    border-bottom: 1px solid rgb(32, 32, 32);
+    padding-top: 8px;
 }
-.workoutBoxHeaderName {
+#editWorkoutForm {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    white-space: nowrap;
-    font-weight: bold;
-    width:auto;
+    gap: 15px;
+
 }
-.workoutBoxHeaderDate {
+.exerciseChoiceBox {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #bdbdbd;
-    white-space: nowrap;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+
+}
+.exerciseChoiceInput {
+    width: 200px;
+    height: 33px;
+    border-radius: 3px;
+    padding-left: 5px;
+    border: none;
     font-family: 'Inter';
+}
+.removeExerciseButton {
+    height: 33px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Inter-B';
+    color: white;
+    background-color: #5a5a5a;
 }
 .workoutActionButtons {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 10px;
-    width: 100%;
-}
-.workoutDeleteField {
-    display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 25px;
-    font-family: 'Inter';
-    font-size: 14px;
-    background-color: rgb(37, 37, 37);
-    border-radius: 7px;
-    color: white;
+    height: 38px;
+    width: 130px;
+}
+#addExerciseButton {
+    height: 38px;
+    width: 130px;
+    border-radius: 5px;
     border: none;
-}
-.workoutDeleteField:hover {
-    background-color: rgb(246, 144, 100);
-}
-.workoutEditField {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 25px;
-    font-family: 'Inter';
-    font-size: 14px;
-    background-color: rgb(37, 37, 37);
-    border-radius: 7px;
+    font-family: 'Inter-B';
     color: white;
+    background-color: #5a5a5a;
+}
+#addExerciseButton:hover {
+    background-color: #787878;
+}
+#workoutAddButton {
+    height: 38px;
+    width: 100px;
+    border-radius: 5px;
     border: none;
-}
-.workoutEditField:hover {
-    background-color: rgb(67, 67, 67);
-}
-.workoutDeleteField:hover {
-    background-color: rgb(67, 67, 67);
-}
-.workoutBoxMain {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-left: 5px;
-}
-.workoutExercisesInfoText {
+    font-family: 'Inter-B';
     color: white;
-    padding-right: 5px;
+    background-color: rgb(228, 137, 33);
 }
-.workoutExercisesInfo {
-    display: flex;
-    flex-direction: column;
-    color: #bdbdbd;
+#workoutAddButton:hover {
+    background-color: rgb(234, 161, 75);
 }
-.addWorkoutBox {
+.removeExerciseButton:hover {
+    background-color: #707070;
+}
 
-}
 .spanStyle {
     font-family: 'Inter';
+}
+.addWorkoutButtonArea
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #333333;
 }
 #leftCornerLogo  {
     display: flex;
     justify-content: left;
     align-self: start;
     padding: 10px;
-    
+
 }
 #logo {
     display: flex;
@@ -269,17 +355,17 @@ a {
     align-items: center;
 }
 #logoIMG {
-    width: 100px; 
+    width: 100px;
     height: auto
 }
 #logoTitle {
     display: flex;
-    color: white; 
-    font-size: 26px; 
-    font-family: 'Inter'; 
-    font-style: italic; 
-    font-weight: 500; 
-    
+    color: white;
+    font-size: 26px;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 500;
+
 }
 footer {
     background-color: #333333;
@@ -300,7 +386,7 @@ footer {
     font-family: 'Roboto';
     font-weight: 200;
     padding-left: 8px;
-    
+
 }
 #footerBox {
     margin: 12.5px;
@@ -310,13 +396,13 @@ footer {
     gap: 300px;
 }
 .mainicons {
-   
+
     color: white;
     width: 70px;
 }
 .icons {
     color: white;
-    
+
 }
 .fa-solid.fa-user {
     color: rgb(228, 137, 33);
@@ -336,7 +422,6 @@ footer {
     align-items: center;
     justify-content: center;
 }
-
 
 @font-face {
     font-family: 'Inter';

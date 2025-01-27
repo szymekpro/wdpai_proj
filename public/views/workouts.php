@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="icon" type="image/jpg" href="../../contents/images-spare/troll.jpg">
-        <title> FACEIT </title>
+        <link rel="icon" type="image/jpg" href="../../images/image.png">
+        <title> PeakFit </title>
         <link rel="stylesheet" href="../../styles/nw_style.css?v=<?= time(); ?>">
         <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
     </head>
@@ -10,10 +10,11 @@
         <header> 
             <div id="leftCornerLogo"> 
                 <div id="logo">
-                    <img id="logoIMG" src="../../contents/images2/image.png"/>
+                    <img id="logoIMG" src="../../images/image.png"/>
                     <div id="logoTitle">  PeakFit  </div>
                 </div>
             </div>
+
             <div id="headerOptions"> 
                 <div class="iconContainer">
                 <a href="/main">
@@ -22,13 +23,23 @@
                 </div>
                 <div class="iconContainer">        
                     <i class="fa-solid fa-user fa-5x icons" class="icons"></i>
-                    <div class="iconText">User</div>
+                    <div class="iconText"><?php
+                        if (session_status() == PHP_SESSION_NONE) {
+                            session_start();
+                        }
+                        echo $_SESSION['user_email'];
+                        ?></div>
                 </div>
                 <div class="iconContainer">
-                    <i class="fa-solid fa-gear fa-3x icons" class="icons"></i>
+                    <a href="/settings">
+                        <i class="fa-solid fa-gear fa-3x icons" class="icons"></i>
+                    </a>
                         <div class="iconText">Settings</div>
                 </div>              
             </div>
+            <a href="/logout">
+                <div class="logoutContainer"> logout </div>
+            </a>
         </header>
 
         <div id="main">
@@ -69,25 +80,22 @@
                 $workoutRepository->setWorkoutExercises($workout);
 
                 echo '</div><div class="workoutBoxMain">';
+                echo '<div class="workoutExercisesInfo">';
 
-                foreach ($workout->getExercisesList() as $exercise) {
-                    echo '<div class="workoutExercisesInfo">';
-                    foreach ($workoutInfo as $workoutInf) {
-                        if ($exercise->getId() == $workoutInf->getExerciseId()) {
-                            echo '<div class="workoutExercisesInfoText">' . $exercise->getName() . '</div>
-                          <div class="workoutExercisesInfoBox"> 
-                              sets: <span class="spanStyle">' . $workoutInf->getSets() . '</span> 
-                              reps: <span class="spanStyle">';
+                foreach ($workoutInfo as $workoutInf) {
+                    $workoutInfoExercise = $workoutInfoRepository->getExerciseByWorkoutInfo($workoutInf->getExerciseId());
 
-                            foreach ($workoutInf->getReps() as $rep) {
-                                echo $rep . ', ';
-                            }
-                            echo '</span> weight: <span class="spanStyle">' . $workoutInf->getWeight() . ' kg</span>
-                          </div>';
-                        }
+                    echo '<div class="workoutExercisesInfoText">' . $workoutInfoExercise->getName() . '</div>
+                         <div class="workoutExercisesInfoBox"> 
+                         sets: <span class="spanStyle">' . $workoutInf->getSets() . '</span> 
+                         reps: <span class="spanStyle">';
+                    foreach ($workoutInf->getReps() as $rep) {
+                        echo $rep . ', ';
+                    }
+                    echo '</span> weight: <span class="spanStyle">' . $workoutInf->getWeight() . ' kg</span>
+                        </div>';
                     }
                     echo '</div>';
-                }
 
                 echo '</div></div><br>';
             }
@@ -95,50 +103,7 @@
             ?>
         </div>
 <!--        workoutDelete-->
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const workoutDeleteFields = document.querySelectorAll('.workoutDeleteField');
-
-                workoutDeleteFields.forEach(button => {
-                    button.addEventListener('click', function () {
-                        // Pobieramy ID treningu z atrybutu data-workout-id
-                        const workoutId = button.getAttribute('data-workout-id');
-
-                        if (workoutId) {
-                            console.log('Workout ID:', workoutId);
-                            const requestID = JSON.stringify({ workout_id: workoutId });
-                            console.log('Request workout ID:', requestID);
-
-                            // Tworzymy żądanie DELETE
-                            const request = {
-                                method: 'POST',
-                                body: requestID,
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                }
-                            };
-
-                            fetch('/delete', request)
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.success) {
-                                        alert('Trening został pomyślnie usunięty!');
-                                        location.reload();  // Odświeżenie strony po sukcesie
-                                    } else {
-                                        alert('Błąd: ' + data.message);
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Błąd podczas żądania:', error);
-                                });
-                        } else {
-                            console.error('Brak ID treningu!');
-                        }
-                    });
-                });
-            });
-
-        </script>
+        <script src="public/js/fetch_workout_delete.js"></script>
         <!--workoutEdit-->
         <footer>
         <div id="line"> 2024-2024 PeakFit, Inc.  Privacy | Contact </div>
@@ -150,7 +115,7 @@
                 <a href="https://www.faceit.com/" target="_blank">
                     <i class="fa-solid fa-info fa-3x icons"></i> </a>
         </div>   
-        </div>   
+
         </footer>     
     </body>
 </html>

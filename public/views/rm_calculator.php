@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="contents/images/troll.jpg">
-    <title> FACEIT </title>
+    <link rel="icon" type="image/jpg" href="../../images/image.png">
+    <title> PeakFit </title>
     <link rel="stylesheet" href="styles/main_style.css?v=<?= time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
@@ -11,7 +11,7 @@
 <header>
     <div id="leftCornerLogo">
         <div id="logo">
-            <img id="logoIMG" src="contents/images2/image.png"/>
+            <img id="logoIMG" src="../../images/image.png"/>
             <div id="logoTitle">  PeakFit  </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="iconContainer">
             <!-- <i class="fa-solid fa-user fa-5x icons" class="icons"></i> -->
-            <img class="icons" src="contents/images/faceit.jpg" id="kubica">
+            <i class="fa-solid fa-user fa-5x icons" class="icons"></i>
             <div class="iconText"><?php
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
@@ -32,64 +32,53 @@
                 ?></div>
         </div>
         <div class="iconContainer">
-            <i class="fa-solid fa-gear fa-3x icons" class="icons"></i>
+            <a href="/settings">
+                <i class="fa-solid fa-gear fa-3x icons" class="icons"></i>
+            </a>
             <div class="iconText">Settings</div>
         </div>
     </div>
+    <a href="/logout">
+        <div class="logoutContainer"> logout </div>
+    </a>
 </header>
 
 <div id="main">
     <div class="calculatorContainer">
         <h2>Kalkulator 1RM</h2>
         <form id="oneRepMaxCalculator">
-            <label for="exercise">Wybierz ćwiczenie:</label>
-            <select id="exercise" name="exercise">
-                <option value="squat">Przysiad</option>
-                <option value="benchPress">Wyciskanie na ławce</option>
-                <option value="deadlift">Martwy ciąg</option>
-                <option value="rows">Wiosłowanie</option>
-            </select>
 
-            <label for="weight">Waga (kg):</label>
-            <input type="number" id="weight" name="weight" required>
+            <div class="input-containers">
+                <label for="exercise">Wybierz ćwiczenie:</label>
+                <select id="exercise" name="exercise">
+                    <option value="squat">Przysiad</option>
+                    <option value="benchPress">Wyciskanie na ławce</option>
+                    <option value="deadlift">Martwy ciąg</option>
+                    <option value="rows">Wiosłowanie</option>
+                </select>
+            </div>
 
-            <label for="reps">Liczba powtórzeń:</label>
-            <input type="number" id="reps" name="reps" required>
+            <div class="input-containers">
+                <label for="weight">Waga (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
 
-            <button type="submit">Oblicz 1RM</button>
+            <div class="input-containers">
+                <label for="reps">Liczba powtórzeń:</label>
+                <input type="number" id="reps" name="reps" required>
+            </div>
+
+            <button id="submit-button-v2" type="submit">Oblicz 1RM</button>
         </form>
 
         <div class="result" id="result"></div>
     </div>
 
 </div>
+<script src="public/js/tools.js"></script>
 <script>
-    document.getElementById('oneRepMaxCalculator').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const weight = parseFloat(document.getElementById('weight').value);
-        const reps = parseInt(document.getElementById('reps').value);
-        const exercise = document.getElementById('exercise').value;
-
-        if (!weight || !reps || !exercise) {
-            document.getElementById('result').innerText = "Proszę wprowadzić wszystkie dane.";
-            return;
-        }
-
-        let oneRepMax = 0;
-        if (exercise === "squat") {
-            oneRepMax = weight * (1 + 0.0333 * reps);
-        } else if (exercise === "benchPress") {
-            oneRepMax = weight * (1 + 0.025 * reps);
-        } else if (exercise === "deadlift") {
-            oneRepMax = weight * (1 + 0.0277 * reps);
-        } else if (exercise === "rows") {
-            oneRepMax = weight * (1 + 0.0333 * reps);
-        }
-
-        oneRepMax = oneRepMax.toFixed(2);
-
-        document.getElementById('result').innerText = `Twoje 1RM dla tego ćwiczenia to: ${oneRepMax} kg`;
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateOneRepMax('oneRepMaxCalculator', 'result');
     });
 </script>
 <footer>
@@ -102,7 +91,7 @@
         <a href="https://www.faceit.com/" target="_blank">
             <i class="fa-solid fa-info fa-3x icons"></i> </a>
     </div>
-    </div>
+
 </footer>
 </body>
 </html>

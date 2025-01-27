@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpg" href="contents/images/troll.jpg">
-    <title> FACEIT </title>
+    <link rel="icon" type="image/jpg" href="../../images/image.png">
+    <title> PeakFit </title>
     <link rel="stylesheet" href="styles/main_style.css?v=<?= time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/acce5d3be5.js" crossorigin="anonymous"></script>
@@ -11,7 +11,7 @@
 <header>
     <div id="leftCornerLogo">
         <div id="logo">
-            <img id="logoIMG" src="contents/images2/image.png"/>
+            <img id="logoIMG" src="../../images/image.png"/>
             <div id="logoTitle">  PeakFit  </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="iconContainer">
             <!-- <i class="fa-solid fa-user fa-5x icons" class="icons"></i> -->
-            <img class="icons" src="contents/images/faceit.jpg" id="kubica">
+            <i class="fa-solid fa-user fa-5x icons" class="icons"></i>
             <div class="iconText"><?php
                 if (session_status() == PHP_SESSION_NONE) {
                     session_start();
@@ -36,6 +36,9 @@
             <div class="iconText">Settings</div>
         </div>
     </div>
+    <a href="/logout">
+        <div class="logoutContainer"> logout </div>
+    </a>
 </header>
 
 <div id="main">
@@ -73,7 +76,7 @@
             </div>
             </div>
             <div class="buttonField">
-                <button type="submit">Oblicz</button>
+                <button id="submit-button" type="submit">Oblicz</button>
             </div>
         </form>
 
@@ -81,37 +84,10 @@
     </div>
 
 </div>
+<script src="public/js/tools.js"></script>
 <script>
-    document.getElementById('calorieCalculator').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const weight = parseFloat(document.getElementById('weight').value);
-        const height = parseFloat(document.getElementById('height').value);
-        const age = parseInt(document.getElementById('age').value);
-        const activity = parseFloat(document.getElementById('activity').value);
-        const gender = document.querySelector('input[name="gender"]:checked').value;
-
-        if (!weight || !height || !age || !activity || !gender) {
-            document.getElementById('result').innerText = "Proszę wprowadzić wszystkie dane.";
-            return;
-        }
-
-        let BMR;
-        if (gender === "male") {
-            BMR = 10 * weight + 6.25 * height - 5 * age + 5;  // Mifflin-St Jeor
-        } else if (gender === "female") {
-            BMR = 10 * weight + 6.25 * height - 5 * age - 161;
-        }
-
-        const dailyCalories = BMR * activity;
-        const caloriesMaintaining = Math.round(dailyCalories);
-        const caloriesLosing = Math.round(dailyCalories - 500);
-        const caloriesGaining = Math.round(dailyCalories + 500);
-        document.getElementById('result').innerText = `
-            Twoje dzienne zapotrzebowanie kaloryczne na utrzymanie wagi: ${caloriesMaintaining} kcal
-            \nNa schudnięcie: ${caloriesLosing} kcal
-            \nNa przytycie: ${caloriesGaining} kcal
-        `;
+    document.addEventListener('DOMContentLoaded', function() {
+        calculateCalories('calorieCalculator', 'result');
     });
 </script>
 <footer>
@@ -123,7 +99,6 @@
             <i class="fa-brands fa-instagram fa-3x icons"></i> </a>
         <a href="https://www.faceit.com/" target="_blank">
             <i class="fa-solid fa-info fa-3x icons"></i> </a>
-    </div>
     </div>
 </footer>
 </body>

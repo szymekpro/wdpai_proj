@@ -1,59 +1,37 @@
 <?php
-/*
-require_once __DIR__ . '/src/repository/ExerciseRepository.php';
-require_once __DIR__ . '/db/Database.php';
-require_once __DIR__ . '/src/models/Exercise.php';
 
-if (isset($_POST["sumbit"])) {
-    $search = $_POST["search"];
-    $exerciseRepository = new ExerciseRepository();
-    $exercise = $exerciseRepository->getExercise($search);
-    echo '<div class="exercise">';
-    if ($exercise->getPhotoPath()) {
-        echo '<img src="' . htmlspecialchars($exercise->getPhotoPath()) . '" alt="' . htmlspecialchars($exercise->getName()) . '" class="exercisePhoto">';
-    }
-    echo '<div class="exerciseTextBox">';
-    echo '<div class="exerciseName">' . htmlspecialchars($exercise->getName()) . '</div>';
-    echo '<div class="exerciseDescription">' . htmlspecialchars($exercise->getDescription()) . '</div>';
-    echo '</div>';
-    echo '</div>';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
-else
-{
-    include "exercises_list_script.php";
-}
-*/
-
 
 require_once __DIR__ . '/../../src/repository/ExerciseRepository.php';
+require_once __DIR__ . '/../../src/repository/UserRepository.php';
 
 if (isset($_POST['search'])) {
     $search = $_POST['search'];
     $exerciseRepository = new ExerciseRepository();
-    $exercises = $exerciseRepository->getExercisesByName($search);
+    $userRepository = new UserRepository();
 
-    if (empty($search)) {
-        $exercises = $exerciseRepository->getAllExercises();
-    } else {
-        $exercises = $exerciseRepository->getExercisesByName($search);
-    }
+    $exercises = empty($search)
+        ? $exerciseRepository->getAllExercises()
+        : $exerciseRepository->getExercisesByName($search);
 
     if ($exercises) {
         foreach ($exercises as $exercise) {
-            echo '<div class="exercise">';
+            echo '<div class="exercise" data-id="' . htmlspecialchars($exercise->getID()) . '">';
             if ($exercise->getPhotoPath()) {
                 echo '<img src="' . htmlspecialchars($exercise->getPhotoPath()) . '" alt="' . htmlspecialchars($exercise->getName()) . '" class="exercisePhoto">';
             }
             echo '<div class="exerciseTextBox">';
             echo '<div class="exerciseName">' . htmlspecialchars($exercise->getName()) . '</div>';
             echo '<div class="exerciseDescription">' . htmlspecialchars($exercise->getDescription()) . '</div>';
+            if ($userRepository->isAdmin($_SESSION['user_id'])) {
+                echo '<button class="deleteExerciseButton" onclick="window.deleteExercise('.$exercise->getID().')" >Usuń</button>';
+            }
             echo '</div>';
             echo '</div>';
         }
-    } else {
-        echo '<p>No exercises found.</p>';
     }
 }
-
-
 ?>
+

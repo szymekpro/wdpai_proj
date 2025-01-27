@@ -44,67 +44,73 @@
 
 <div id="main">
 
-    <a class="goBackButtonContainer" href="/workouts">
+    <a class="goBackButtonContainer" href="/exercises">
         <div class="goBackButton">
             <i class="fa-solid fa-arrow-left icons"></i>
             <div class="goBackText"> Go back </div>
         </div>
     </a>
 
-    <form class="addWorkoutBox" action="/assign" method="POST">
-
+    <form class="addWorkoutBox" id="exerciseForm" method="POST">
         <div class="workoutNameBox">
-            <input type="text" id="workoutNameInput" name="name" required placeholder="workout name">
-        </div>
-
-        <div class="workoutDateBox">
-            <input type="date" id="workoutDateInput" name="date" required placeholder="date">
+            Exercise Creator
         </div>
 
         <div id="exerciseContainer">
             <div class="exerciseBox">
                 <div class="exerciseChoiceBox">
-                    <select id="selectExerciseBox" name="exercises[exercise_id][]" required>
+                    <input class="exerciseChoiceInput" type="text" name="name" required placeholder="Name">
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="text" name="photo_path" required placeholder="/images/photo_name">
+                </div>
+                <div class="exerciseChoiceBox">
+                    <input class="exerciseChoiceInput" type="text" name="description" required placeholder="Description">
+                </div>
+                <select class="exerciseChoiceInput" name="category" required>
                     <?php
                     require_once __DIR__ . '/../../src/repository/ExerciseRepository.php';
                     $exerciseRepository = new ExerciseRepository();
-                    $exercises = $exerciseRepository->getAllExercises();
+                    $categories = $exerciseRepository->getAllCategories();
 
-                    foreach ($exercises as $exercise) {
-                        //echo $exercise->getName();
-                        echo '<option value="' . $exercise->getId() . '">' . $exercise->getName() . '</option>';
+                    foreach ($categories as $category) {
+                        echo '<option value="' . htmlspecialchars($category) . '">' . htmlspecialchars($category) . '</option>';
                     }
                     ?>
-                    </select>
-                </div>
+                </select>
                 <div class="exerciseChoiceBox">
-                    <input class="exerciseChoiceInput" type="number" name="exercises[sets][]" required placeholder="sets">
+                    <input class="exerciseChoiceInput" type="text" name="difficulty" required placeholder="Difficulty">
                 </div>
-                <div class="exerciseChoiceBox">
-                    <input class="exerciseChoiceInput" type="text" name="exercises[reps][]" required placeholder="reps">
-                </div>
-                <div class="exerciseChoiceBox">
-                    <input class="exerciseChoiceInput" type="number" step="0.1" name="exercises[weight][]" required placeholder="weight">
-                </div>
-                <div class="exerciseChoiceBox">
-                    <input class="exerciseChoiceInput" type="text" name="exercises[notes][]" required placeholder="notes">
-                </div>
-                <button type="button" class="removeExerciseButton">Remove</button>
-
+                <button type="button" class="saveExerciseButton" onclick="saveExercise()">Save Exercise</button>
             </div>
         </div>
-
-        <div class="workoutActionButtons">
-            <button type="button" id="addExerciseButton">Add Exercise</button>
-        </div>
-        <div class="workoutActionButtons">
-        <button type="submit" id="workoutAddButton">Add Workout</button>
-        </div>
-
     </form>
 
-<!--    <script src="public/js/add_workout.js"></script>-->
-    <script src="public/js/add_workout.js"></script>
+    <script>
+        async function saveExercise() {
+            const exerciseForm = document.getElementById('exerciseForm');
+            const formData = new FormData(exerciseForm);
+
+            try {
+                // Wysyłamy dane do backendu
+                const response = await fetch('/addExercise', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    alert('Exercise saved successfully!');
+                    exerciseForm.reset(); // Resetujemy formularz po dodaniu
+                } else {
+                    const error = await response.text();
+                    alert('Error saving exercise: ' + error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            }
+        }
+    </script>
 </div>
 
 

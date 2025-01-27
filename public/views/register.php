@@ -14,7 +14,8 @@
         <div id="logoTitle">  PeakFit  </div>
     </div>
 
-    <form class="login" action="/login" method="POST">
+    <form class="register" action="/register" method="POST">
+
         <div class="loginMessage">
             <?php
             if (isset($messages)) {
@@ -27,22 +28,38 @@
             }
             ?>
         </div>
-        <div id="loginBox">
 
+        <div id="loginBox">
             <div id="outerBox"></div>
-            <div id="innerBox"> <input class="loginInput" type="text" name="email" placeholder="email" /></div>
+            <div id="innerBox">
+                <input class="loginInput" type="text" name="name" placeholder="name" />
+            </div>
         </div>
 
         <div id="loginBox">
             <div id="outerBox"></div>
-            <div id="innerBox">  <input class="loginInput" type="password" name="password" placeholder="password" /></div>
+            <div id="innerBox">
+                <input class="loginInput" type="text" name="surname" placeholder="surname" />
+            </div>
         </div>
 
-        <input id="loginButton" type="submit" value="Sign In">
+        <div id="loginBox">
+            <div id="outerBox"></div>
+            <div id="innerBox">
+                <input class="loginInput" type="text" name="email" placeholder="email" />
+            </div>
+        </div>
 
-        <a href="/register">
-            <div id="registerButton" >Register</div>
-        </a>
+        <div id="loginBox">
+            <div id="outerBox"></div>
+            <div id="innerBox">
+                <input class="loginInput" type="text" name="password" placeholder="password" />
+            </div>
+        </div>
+
+        <input id="registerButton" type="submit" value="Register" >
+
+
     </form>
 
 </div>
