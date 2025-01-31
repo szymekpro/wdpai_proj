@@ -43,40 +43,40 @@
 
 <div id="main">
     <div class="calculatorContainer">
-        <h2>Kalkulator zapotrzebowania kalorycznego</h2>
+        <h2>Calorie intake calculator</h2>
         <form id="calorieCalculator">
             <div class="input-containers">
-                <label class="input-labels" for="weight">Waga (kg)</label>
+                <label class="input-labels" for="weight">Weight (kg)</label>
                 <input type="number" id="weight" name="weight" required>
             </div>
             <div class="input-containers">
-                <label class="input-labels" for="height">Wzrost (cm)</label>
+                <label class="input-labels" for="height">Height (cm)</label>
                 <input type="number" id="height" name="height" required>
             </div>
             <div class="input-containers">
-                <label class="input-labels" for="age">Wiek (lat)</label>
+                <label class="input-labels" for="age">Age</label>
                 <input type="number" id="age" name="age" required>
             </div>
             <div class="input-containers">
-                <label class="input-labels" for="activity">Poziom aktywności fizycznej</label>
+                <label class="input-labels" for="activity">Activity level</label>
                 <select id="activity" name="activity">
-                    <option value="1.2">Brak aktywności</option>
-                    <option value="1.375">Niska aktywność</option>
-                    <option value="1.55">Średnia aktywność</option>
-                    <option value="1.725">Wysoka aktywność</option>
-                    <option value="1.9">Bardzo wysoka aktywność</option>
+                    <option value="1.2">None</option>
+                    <option value="1.375">Low activity</option>
+                    <option value="1.55">Medium activity</option>
+                    <option value="1.725">High activity</option>
+                    <option value="1.9">Very high activity</option>
                 </select>
                 </div>
             <div class="input-containers">
             <div class="gender-options">
-                <label class="gender-labels" for="male">Mężczyzna</label>
+                <label class="gender-labels" for="male">Male</label>
                 <input type="radio" id="male" name="gender" value="male" checked>
-                <label class="gender-labels" for="female">Kobieta</label>
+                <label class="gender-labels" for="female">Female</label>
                 <input type="radio" id="female" name="gender" value="female">
             </div>
             </div>
             <div class="buttonField">
-                <button id="submit-button" type="submit">Oblicz</button>
+                <button id="submit-button" type="submit">Calculate</button>
             </div>
         </form>
 

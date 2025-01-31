@@ -43,6 +43,7 @@
         <a href="/register">
             <div id="registerButton" >Register</div>
         </a>
+
     </form>
 
 </div>

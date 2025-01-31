@@ -45,19 +45,19 @@
 
 <div id="main">
     <div class="calculatorContainer">
-        <h2>Kalkulator BMI</h2>
+        <h2>BMI calculator</h2>
         <form id="bmiCalculator">
             <div class="input-containers">
-                <label for="weight">Waga (kg):</label>
+                <label for="weight">Weight (kg):</label>
                 <input type="number" id="weight" name="weight" step="0.1" required>
             </div>
 
             <div class="input-containers">
-                <label for="height">Wzrost (cm):</label>
+                <label for="height">Height (cm):</label>
                 <input type="number" id="height" name="height" step="0.1" required>
             </div>
 
-            <button id="submit-button-v2" type="submit">Oblicz BMI</button>
+            <button id="submit-button-v2" type="submit">Calculate BMI</button>
         </form>
 
         <div class="result" id="result"></div>

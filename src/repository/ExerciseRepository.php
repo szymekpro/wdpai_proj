@@ -53,9 +53,9 @@ class ExerciseRepository extends Repository
      public function getExerciseCategoryID(string $category): int
      {
          $stmt = $this->db->connect()->prepare(
-             "SELECT c.id category FROM public.exercises as e 
-                    join public.categories c on e.category_id = c.id
-                    WHERE c.name = :category"
+             "SELECT categories.id category
+                    FROM public.categories
+                    WHERE categories.name = :category"
          );
          $stmt->bindParam(':category', $category, PDO::PARAM_STR);
          $stmt->execute();
@@ -142,7 +142,9 @@ class ExerciseRepository extends Repository
 
         $userRepository = new UserRepository();
         //$user = $userRepository->getUserByID($userid);
-        $exerciseCategoryID = $this->getExerciseCategoryID($exercise->getCategory());
+        echo json_encode($exercise->getCategory());
+        $category = $exercise->getCategory();
+        $exerciseCategoryID = $this->getExerciseCategoryID($category);
 
         if ($userRepository->isAdmin($userid)) {
             $stmt->execute([

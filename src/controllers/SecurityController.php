@@ -18,11 +18,11 @@ class SecurityController extends AppController
         $user = $userRepository->getUser($email);
 
         if (!$user) {
-            $this->render('login', ['messages' => ['User with this email not exist!']]);
+            $this->render('login', ['messages' => ['Ten użytkownik nie istnieje!']]);
             return;
         }
         if ($user->getEmail() !== $email) {
-            $this->render('login', ['messages' => ['User with this email not exist!']]);
+            $this->render('login', ['messages' => ['Użytkownik z tym emailem nie istnieje!']]);
             return;
         }
 
@@ -33,7 +33,7 @@ class SecurityController extends AppController
 
             return $this->render('main');
         } else {
-            $this->render('login', ['messages' => ['Wrong password!']]);
+            $this->render('login', ['messages' => ['Złe hasło!']]);
         }
 
     }
@@ -50,37 +50,37 @@ class SecurityController extends AppController
         $name = $_POST['name'];
 
         if ($email === '' || $password === '' || $name === '' || $surname === '') {
-            $this->render('register', ['messages' => ['Please, fill all fields!']]);
+            $this->render('register', ['messages' => ['Wypełnij wszystkie pola!']]);
             return;
         }
 
         if (!preg_match('/^[A-Z]/', $name)) {
-            $this->render('register', ['messages' => ['The name must start with a capital letter!']]);
+            $this->render('register', ['messages' => ['Imie musi się zaczynać z dużej litery!']]);
             return;
         }
 
         if (!preg_match('/^[A-Z]/', $surname)) {
-            $this->render('register', ['messages' => ['The surname must start with a capital letter!']]);
+            $this->render('register', ['messages' => ['Nazwiskp musi się zaczynać z dużej litery!']]);
             return;
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $this->render('register', ['messages' => ['Wrong email!']]);
+            $this->render('register', ['messages' => ['Zły email!']]);
             return;
         }
 
         if (strlen($password) < 3) {
-            $this->render('register', ['messages' => ['Password is too short!']]);
+            $this->render('register', ['messages' => ['Hasło jest za krótkie!']]);
             return;
         }
 
         if (!preg_match('/[A-Z]/', $password)) {
-            $this->render('register', ['messages' => ['Password must contain at least one capital letter!']]);
+            $this->render('register', ['messages' => ['Hasło musi zawierać jedną dużą literę!']]);
             return;
         }
 
         if (!preg_match('/[0-9]/', $password)) {
-            $this->render('register', ['messages' => ['Password must contain at least one number!']]);
+            $this->render('register', ['messages' => ['Hasło musi zawierać jedną cyfrę!']]);
             return;
         }
 
@@ -89,7 +89,7 @@ class SecurityController extends AppController
         $user = $userRepository->getUser($email);
 
         if ($user) {
-            $this->render('register', ['messages' => ['User with this email already exist!']]);
+            $this->render('register', ['messages' => ['Taki użytkownik już istnieje!']]);
             return;
         }
 
@@ -97,7 +97,7 @@ class SecurityController extends AppController
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $userRepository->addUser($name,$surname,$email, $hash,$role);
 
-        $this->render('login', ['messages' => ['Registration successful!']]);
+        $this->render('login', ['messages' => ['Rejestracja powiodła się!']]);
 
     }
 
@@ -120,22 +120,22 @@ class SecurityController extends AppController
         $newPass = $data['new_password'] ?? null;
 
         if ($oldPass === '' || $newPass === '') {
-            echo json_encode(['messages' => ['Please, fill all fields!']]);
+            echo json_encode(['messages' => ['Wypełnij wszystkie pola!']]);
             return;
         }
 
         if (strlen($newPass) < 7) {
-            echo json_encode(['messages' => ['Password is too short! At least 7 characters.']]);
+            echo json_encode(['messages' => ['Hasło jest za krótkie! Musi zawierać minimum 7 znaków.']]);
             return;
         }
 
         if (!preg_match('/[A-Z]/', $newPass)) {
-            echo json_encode(['messages' => ['Password must contain at least one capital letter!']]);
+            echo json_encode(['messages' => ['Hasło musi zawierać jedną dużą literę!']]);
             return;
         }
 
         if (!preg_match('/[0-9]/', $newPass)) {
-            echo json_encode(['messages' => ['Password must contain at least one number!']]);
+            echo json_encode(['messages' => ['Hasło musi zawierać jedną cyfrę!']]);
             return;
         }
 

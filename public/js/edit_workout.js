@@ -42,30 +42,9 @@ addExerciseButton.addEventListener('click', () => {
         if (exerciseContainer.querySelectorAll('.particularExerciseBox').length > 1) {
             exerciseDiv.remove();
         } else {
-            alert('Nie możesz usunąć wszystkich ćwiczeń! Co najmniej jedno ćwiczenie musi pozostać.');
+            alert('Nie możesz usunąć wszystkich ćwiczeń! Co najmniej jedno ćwiczenie musi pozostać. 1');
         }
     });
-});
-
-exerciseContainer.addEventListener('click', (event) => {
-    if (event.target.classList.contains('removeExerciseButton')) {
-        const exerciseDiv = event.target.closest('.particularExerciseBox');
-
-        const hiddenInput = exerciseDiv.querySelector('input[name="existing_exercises[]"]');
-        if (hiddenInput) {
-            const removedInput = document.createElement('input');
-            removedInput.type = 'hidden';
-            removedInput.name = 'removed_exercises[]';
-            removedInput.value = hiddenInput.value;
-            removedExercisesContainer.appendChild(removedInput);
-        }
-
-        if (exerciseContainer.querySelectorAll('.particularExerciseBox').length > 1) {
-            exerciseDiv.remove();
-        } else {
-            alert('Nie możesz usunąć wszystkich ćwiczeń! Co najmniej jedno ćwiczenie musi pozostać.');
-        }
-    }
 });
 
 document.querySelectorAll('.removeExerciseButton').forEach(removeButton => {

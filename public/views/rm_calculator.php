@@ -45,30 +45,30 @@
 
 <div id="main">
     <div class="calculatorContainer">
-        <h2>Kalkulator 1RM</h2>
+        <h2>1RM Calculator</h2>
         <form id="oneRepMaxCalculator">
 
             <div class="input-containers">
-                <label for="exercise">Wybierz ćwiczenie:</label>
+                <label for="exercise">Select exercise:</label>
                 <select id="exercise" name="exercise">
-                    <option value="squat">Przysiad</option>
-                    <option value="benchPress">Wyciskanie na ławce</option>
-                    <option value="deadlift">Martwy ciąg</option>
-                    <option value="rows">Wiosłowanie</option>
+                    <option value="squat">Squat</option>
+                    <option value="benchPress">Bench Press</option>
+                    <option value="deadlift">Deadlift</option>
+                    <option value="rows">Barbell row</option>
                 </select>
             </div>
 
             <div class="input-containers">
-                <label for="weight">Waga (kg):</label>
+                <label for="weight">Weight (kg):</label>
                 <input type="number" id="weight" name="weight" required>
             </div>
 
             <div class="input-containers">
-                <label for="reps">Liczba powtórzeń:</label>
+                <label for="reps">Number of reps:</label>
                 <input type="number" id="reps" name="reps" required>
             </div>
 
-            <button id="submit-button-v2" type="submit">Oblicz 1RM</button>
+            <button id="submit-button-v2" type="submit">Calculate 1RM</button>
         </form>
 
         <div class="result" id="result"></div>

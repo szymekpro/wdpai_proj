@@ -59,6 +59,9 @@
 
         <input id="registerButton" type="submit" value="Register" >
 
+        <a href="/login">
+            <div id="registerButton" >Back to login</div>
+        </a>
 
     </form>
 

@@ -84,33 +84,6 @@ class WorkoutRepository extends Repository
 
     }
 
-    public function setWorkoutExercisesWithData(Workout $workout) {
-        $stmt = $this->db->connect()->prepare(
-            "SELECT e.id id,e.name name, e.photo_path photo_path, e.description description, c.name category, e.difficulty difficulty
-                    FROM public.workouts w
-                    join workout_exercises we on w.id = we.workout_id
-                    join exercises e on we.exercise_id = e.id
-                    join users u on w.user_id = u.id
-                    join categories c on e.category_id = c.id
-                    where w.name = :name and u.email = :email");
-        $name = $workout->getName();
-        $email = $workout->getUserEmail();
-        $stmt->bindParam(":name", $name, PDO::PARAM_STR);
-        $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-        $stmt->execute();
-
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        if (!$results) {
-            return null;
-        }
-
-        foreach ($results as $row) {
-            $workout->addExercise(new Exercise($row['id'],$row['name'], $row['photo_path'], $row['description'], $row['category'],$row['difficulty']));
-        }
-
-
-    }
 
     public function addWorkout(Workout $workout) : void {
 

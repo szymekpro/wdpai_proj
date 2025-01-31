@@ -14,50 +14,6 @@ class ExerciseController extends AppController
         $this->exerciseRepository = new ExerciseRepository();
     }
 
-    /*public function addExercise()
-    {
-        if ($this->isPost()) {
-            $exercises = $_POST['exercises'] ?? null;
-
-            if (empty($exercises)) {
-                $this->messages[] = 'Wszystkie pola muszą być uzupełnione!';
-                return $this->render('add_exercise', ['messages' => $this->messages]);
-            }
-
-            try {
-
-                for ($i = 0; $i < count($exercises['name']); $i++) {
-                    $name = $exercises['name'][$i];
-                    $photoPath = $exercises['photo_path'][$i];
-                    $description = $exercises['description'][$i];
-                    $category = $exercises['category'][$i];
-                    $difficulty = $exercises['difficulty'][$i];
-
-                    $exercise = new Exercise(
-                        null,
-                        $name,
-                        $photoPath,
-                        $description,
-                        $category,
-                        $difficulty
-                    );
-
-                    $this->exerciseRepository->addExercise($exercise);
-                }
-
-                $this->messages[] = '';
-                header("Location: exercises");
-                exit;
-
-            } catch (Exception $e) {
-                $this->messages[] = 'Błąd: ' . $e->getMessage();
-            }
-
-        }
-
-        $this->render('add_exercise', ['messages' => $this->messages]);
-    }*/
-
     public function addExercise()
     {
 
@@ -71,7 +27,7 @@ class ExerciseController extends AppController
 
             if (!$name || !$photoPath || !$description || !$category || !$difficulty) {
                 http_response_code(400);
-                echo 'All fields must be filled!';
+                echo 'Wypełnij wszystkie pola!';
                 return;
             }
 
@@ -105,7 +61,7 @@ class ExerciseController extends AppController
         $exerciseId = $data['exercise_id'] ?? null;
 
         if (!$exerciseId) {
-            echo json_encode(['success' => false, 'message' => 'Invalid exercise ID']);
+            echo json_encode(['success' => false, 'message' => 'ID ćwiczenia nie istnieje!']);
             exit;
         }
 

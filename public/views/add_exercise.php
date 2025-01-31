@@ -92,7 +92,6 @@
             const formData = new FormData(exerciseForm);
 
             try {
-                // Wysyłamy dane do backendu
                 const response = await fetch('/addExercise', {
                     method: 'POST',
                     body: formData,
@@ -100,7 +99,7 @@
 
                 if (response.ok) {
                     alert('Exercise saved successfully!');
-                    exerciseForm.reset(); // Resetujemy formularz po dodaniu
+                    exerciseForm.reset();
                 } else {
                     const error = await response.text();
                     alert('Error saving exercise: ' + error);

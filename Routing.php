@@ -23,7 +23,6 @@ class Routing
 
         $extension = pathinfo($url, PATHINFO_EXTENSION);
         if (in_array($extension, ['js', 'css', 'jpg', 'png', 'gif', 'ico'])) {
-            // Bezpośrednie serwowanie pliku
             $filePath = __DIR__ . '/' . $url;
             echo json_encode($filePath);
             if (file_exists($filePath)) {
