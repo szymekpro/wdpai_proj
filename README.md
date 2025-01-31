@@ -18,7 +18,7 @@ The Peak Fit App is a modern fitness application designed to help users track wo
 ![Watch stats](contents/readme_files/new-workout.png)
 
 ### Admin exercises managment
-![Watch stats](contents/readme_files/admin_exercises.png)
+![Watch stats](contents/readme_files/admin-exercises.png)
 
 ### User settings
 ![Watch stats](contents/readme_files/user-view.png)
