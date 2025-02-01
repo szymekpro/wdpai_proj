@@ -20,6 +20,8 @@ The Peak Fit App is a modern fitness application designed to help users track wo
 ### Admin exercises managment
 ![Watch stats](contents/readme_files/admin-exercises.png)
 
+Admin can create and add exercises into general exercises database or remove them, unlike basic user.
+
 ### User settings
 ![Watch stats](contents/readme_files/user-view.png)
 
